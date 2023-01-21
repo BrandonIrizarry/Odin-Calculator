@@ -1,13 +1,14 @@
 /* CSS VARIABLES */
 :root {
-    --default-bg-color: dodgerblue;
+    --default-bg-color: #005;
+    --default-fg-color: #fff;
 }
 
 /* GLOBAL SETTINGS AND RESETS */
 html {
     box-sizing: border-box;
     font-size: 100%;
-    color: white;
+    color: var(--default-fg-color);
 }
 
 *, *::before, *::after {
@@ -25,7 +26,7 @@ ul {
 
 /* MAIN CONFIGURATION */
 body {
-    background-color: #005;
+    background-color: var(--default-bg-color);
     margin: 0;
     min-height: 100vh;
 }
