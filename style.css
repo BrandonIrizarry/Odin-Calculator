@@ -51,6 +51,12 @@ body {
 	"zero zero decimal-point";
 
     --button-bg-color: #f7f7f9;
+    --button-fg-color: #010b02;
+}
+
+.grid-dock > * {
+    color: var(--button-fg-color);
+    background-color: var(--button-bg-color);
 }
 
 .one {
