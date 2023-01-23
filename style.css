@@ -44,6 +44,9 @@ body {
 }
 
 .grid-dock {
+    width: 100%;
+    grid-template-columns: repeat(3, minmax(min(100px, 100%), 1fr));
+    grid-template-rows: repeat(4, 100px);
     grid-template-areas:
 	"seven eight nine"
 	"four five six"
