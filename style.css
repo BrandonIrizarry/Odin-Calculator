@@ -33,37 +33,17 @@ body {
     display: flex;
 }
 
-.frame {
-    flex: 1;
-    flex-direction: column;
-    --frame-color: #03619f;
-    background-color: var(--frame-color);
-}
-
-.title {
-    height: 10px;
-}
-
-.flex {
+[class^="flex-"] {
     display: flex;
     gap: var(--default-gap);
 }
 
-.grid {
+[class^="grid-"] {
     display: grid;
     gap: var(--default-gap);
 }
 
-.dock > * {
-    background-color: white;
-}
-
-.grid.dock {
-    place-items: center;
-    grid-auto-columns: 1fr;
-}
-
-#numbers {
+.grid-dock {
     grid-template-areas:
 	"seven eight nine"
 	"four five six"
@@ -73,46 +53,46 @@ body {
     --button-bg-color: #f7f7f9;
 }
 
-#one {
+.one {
     grid-area: one;
 }
 
-#two {
+.two {
     grid-area: two;
 }
 
-#three {
+.three {
     grid-area: three;
 }
 
-#four {
+.four {
     grid-area: four;
 }
 
-#five {
+.five {
     grid-area: five;
 }
 
-#six {
+.six {
     grid-area: six;
 }
 
-#seven {
+.seven {
     grid-area: seven;
 }
 
-#eight {
+.eight {
     grid-area: eight;
 }
 
-#nine {
+.nine {
     grid-area: nine;
 }
 
-#zero {
+.zero {
     grid-area: zero;
 }
 
-#decimal-point {
+.decimal-point {
     grid-area: decimal-point;
 }
