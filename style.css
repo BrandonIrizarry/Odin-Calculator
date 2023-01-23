@@ -2,6 +2,7 @@
 :root {
     --default-bg-color: #005;
     --default-fg-color: #fff;
+    --default-gap: 10px;
 }
 
 /* GLOBAL SETTINGS AND RESETS */
@@ -29,4 +30,89 @@ body {
     background-color: var(--default-bg-color);
     margin: 0;
     min-height: 100vh;
+    display: flex;
+}
+
+.frame {
+    flex: 1;
+    flex-direction: column;
+    --frame-color: #03619f;
+    background-color: var(--frame-color);
+}
+
+.title {
+    height: 10px;
+}
+
+.flex {
+    display: flex;
+    gap: var(--default-gap);
+}
+
+.grid {
+    display: grid;
+    gap: var(--default-gap);
+}
+
+.dock > * {
+    background-color: white;
+}
+
+.grid.dock {
+    place-items: center;
+    grid-auto-columns: 1fr;
+}
+
+#numbers {
+    grid-template-areas:
+	"seven eight nine"
+	"four five six"
+	"one two three"
+	"zero zero decimal-point";
+
+    --button-bg-color: #f7f7f9;
+}
+
+#one {
+    grid-area: one;
+}
+
+#two {
+    grid-area: two;
+}
+
+#three {
+    grid-area: three;
+}
+
+#four {
+    grid-area: four;
+}
+
+#five {
+    grid-area: five;
+}
+
+#six {
+    grid-area: six;
+}
+
+#seven {
+    grid-area: seven;
+}
+
+#eight {
+    grid-area: eight;
+}
+
+#nine {
+    grid-area: nine;
+}
+
+#zero {
+    grid-area: zero;
+}
+
+#decimal-point {
+    grid-area: decimal-point;
 }
