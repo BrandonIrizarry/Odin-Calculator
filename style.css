@@ -60,11 +60,14 @@ body {
 
     --button-bg-color: #f7f7f9;
     --button-fg-color: #010b02;
+    --button-bg-edge-color: #ff8888;
 }
 
 .grid-dock > * {
     color: var(--button-fg-color);
-    background-color: var(--button-bg-color);
+    border-radius: 5px;
+    background: linear-gradient(var(--button-bg-color), var(--button-bg-edge-color), var(--button-bg-color));
+    font-size: 1.5rem;
 }
 
 .one {
