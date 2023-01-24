@@ -96,8 +96,10 @@ body {
     flex-direction: column;
 }
 
+/* Mobile-first: all flex button-docks are vertical, and so use the
+   'button-height' custom property */
 .flex-dock > [class*="button"] {
-    height: var(--button-height);
+    flex: 0 1 var(--button-height);
 }
 
 .button {
@@ -166,7 +168,15 @@ body {
 	grid-template-rows: var(--button-height) calc(var(--button-height) * 4 + var(--default-gap) * 3) var(--button-height);
     }
 
+    /* Keep memory and control-panel as vertical button-docks, but change
+    the rest to horizontal */
     .flex-dock:not(.area-memory, .area-control-panel) {
 	flex-direction: row;
+    }
+
+    /* Make sure that the horizontally-positioned buttons occupy the given
+       space */
+    .flex-dock:not(.area-memory, .area-control-panel) > [class*="button"] {
+	flex: var(--button-width);
     }
 }
