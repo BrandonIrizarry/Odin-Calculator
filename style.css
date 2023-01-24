@@ -3,6 +3,9 @@
     --default-bg-color: #005;
     --default-fg-color: #fff;
     --default-gap: 10px;
+
+    --button-width: 50px;
+    --button-height: 50px;
 }
 
 /* GLOBAL SETTINGS AND RESETS */
@@ -31,6 +34,10 @@ body {
     margin: 0;
     min-height: 100vh;
     display: grid;
+
+    gap: var(--default-gap);
+    grid-auto-flow: column;
+    grid-template-columns: 3fr 1fr;
 }
 
 [class*="flex-"] {
@@ -50,13 +57,21 @@ body {
 
 .grid-dock {
     width: 100%;
-    grid-template-columns: repeat(3, minmax(min(100px, 100%), 1fr));
-    grid-template-rows: repeat(4, 100px);
+    grid-template-columns: repeat(3, minmax(min(var(--button-width), 100%), 1fr));
+    grid-template-rows: repeat(4, var(--button-height));
     grid-template-areas:
 	"seven eight nine"
 	"four five six"
 	"one two three"
 	"zero zero decimal-point";
+}
+
+.flex-dock {
+    flex-direction: column;
+}
+
+.flex-dock > [class*="button"] {
+    height: var(--button-height);
 }
 
 .button {
