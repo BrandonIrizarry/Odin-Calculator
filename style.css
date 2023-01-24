@@ -4,8 +4,8 @@
     --default-fg-color: #fff;
     --default-gap: 10px;
 
-    --button-width: 40px;
-    --button-height: 50px;
+    --button-width: 100px;
+    --button-height: 80px;
 }
 
 /* GLOBAL SETTINGS AND RESETS */
