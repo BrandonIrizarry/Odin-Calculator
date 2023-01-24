@@ -33,12 +33,12 @@ body {
     display: flex;
 }
 
-[class^="flex-"] {
+[class*="flex-"] {
     display: flex;
     gap: var(--default-gap);
 }
 
-[class^="grid-"] {
+[class*="grid-"] {
     display: grid;
     gap: var(--default-gap);
 }
