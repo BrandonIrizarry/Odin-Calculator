@@ -57,17 +57,17 @@ body {
 	"four five six"
 	"one two three"
 	"zero zero decimal-point";
-
-    --button-bg-color-light: #fafbff;
-    --button-fg-color: #010b02;
-    --button-bg-color-dark: #a2a2a2;
 }
 
-.grid-dock > * {
+.button {
     color: var(--button-fg-color);
     border-radius: 5px;
     background: linear-gradient(var(--button-bg-color-light) 20%, var(--button-bg-color-dark) 80%);
     font-size: 1.5rem;
+
+    --button-bg-color-light: #fafbff;
+    --button-fg-color: #010b02;
+    --button-bg-color-dark: #a2a2a2;
 }
 
 .one {
