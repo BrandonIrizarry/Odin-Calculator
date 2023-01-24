@@ -37,7 +37,7 @@ body {
 
     gap: var(--default-gap);
     grid-auto-flow: column;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr;
 }
 
 [class*="flex-"] {
