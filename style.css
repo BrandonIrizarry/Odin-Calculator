@@ -43,6 +43,27 @@ body {
     gap: var(--default-gap);
     grid-auto-flow: column;
     grid-template-columns: 3fr repeat(4, minmax(var(--button-width), 1fr));
+    grid-template-areas: "numberpad memory arithmetic unary control-panel";
+}
+
+.area-numberpad {
+    grid-area: numberpad;
+}
+
+.area-memory {
+    grid-area: memory;
+}
+
+.area-arithmetic {
+    grid-area: arithmetic;
+}
+
+.area-unary {
+    grid-area: unary;
+}
+
+.area-control-panel {
+    grid-area: control-panel;
 }
 
 [class*="flex-"] {
@@ -133,3 +154,15 @@ body {
 .decimal-point {
     grid-area: decimal-point;
 }
+
+@media only screen and (orientation: portrait) {
+    body {
+	grid-template-areas:
+	    "arithmetic arithmetic"
+	    "numberpad memory"
+	    "numberpad memory"
+	    "numberpad memory"
+	    "numberpad memory"
+	    "unary ."
+	    "control-panel .";
+    }
