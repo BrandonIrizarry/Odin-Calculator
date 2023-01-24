@@ -160,9 +160,13 @@ body {
 	grid-template-areas:
 	    "arithmetic arithmetic"
 	    "numberpad memory"
-	    "numberpad memory"
-	    "numberpad memory"
-	    "numberpad memory"
-	    "unary ."
-	    "control-panel .";
+	    "unary control-panel"
+	    ". control-panel";
+
+	grid-template-rows: var(--button-height) calc(var(--button-height) * 4 + var(--default-gap) * 3) var(--button-height);
     }
+
+    .flex-dock:not(.area-memory, .area-control-panel) {
+	flex-direction: row;
+    }
+}
