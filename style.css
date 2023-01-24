@@ -43,6 +43,11 @@ body {
     gap: var(--default-gap);
 }
 
+.flex-force-centering {
+    justify-content: center;
+    align-items: center;
+}
+
 .grid-dock {
     width: 100%;
     grid-template-columns: repeat(3, minmax(min(100px, 100%), 1fr));
