@@ -30,7 +30,7 @@ body {
     background-color: var(--default-bg-color);
     margin: 0;
     min-height: 100vh;
-    display: flex;
+    display: grid;
 }
 
 [class*="flex-"] {
