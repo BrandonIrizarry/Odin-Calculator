@@ -4,7 +4,7 @@
     --default-fg-color: #fff;
     --default-gap: 10px;
 
-    --button-width: 50px;
+    --button-width: 40px;
     --button-height: 50px;
 }
 
@@ -37,7 +37,7 @@ body {
 
     gap: var(--default-gap);
     grid-auto-flow: column;
-    grid-template-columns: 3fr 1fr 1fr;
+    grid-template-columns: 3fr repeat(4, minmax(var(--button-width), 1fr));
 }
 
 [class*="flex-"] {
