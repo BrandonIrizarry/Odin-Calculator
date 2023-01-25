@@ -108,6 +108,11 @@ body {
     --button-bg-color-dark: #a2a2a2;
 }
 
+.button:active {
+    background: linear-gradient(var(--button-bg-color-dark) 20%, var(--button-bg-color-light) 80%);
+    color: white;
+}
+
 .one {
     grid-area: one;
 }
