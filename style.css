@@ -29,11 +29,6 @@ ul {
 }
 
 /* MAIN CONFIGURATION */
-#icon-delete {
-    width: var(--button-width);
-    height: var(--button-height);
-}
-
 body {
     background-color: var(--default-bg-color);
     margin: 0;
