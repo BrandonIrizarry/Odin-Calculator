@@ -163,6 +163,8 @@ body {
 	    "numberpad numberpad numberpad memory"
 	    "unary unary unary control-panel"
 	    "unary unary unary control-panel";
+
+	grid-template-columns: none;
     }
 
     /* Keep memory and control-panel as vertical button-docks, but change
