@@ -166,6 +166,7 @@ body {
 
     .flex-dock > [class*="button"] {
 	flex: 1;
+	height: var(--button-height);
     }
 
     /* Keep memory and control-panel as vertical button-docks, but change
@@ -182,16 +183,7 @@ body {
 	align-items: end;
     }
 
-    .area-arithmetic > [class*="button"] {
-	height: var(--button-height);
-    }
-
     .area-unary {
 	align-items: start;
-	height: var(--button-height);
-    }
-
-    .area-unary > div {
-	height: 100%;
     }
 }
