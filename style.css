@@ -172,7 +172,7 @@ body {
     }
 
     .grid-dock {
-	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr));
+	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr)); /* Use minmax */
     }
 
     .area-memory > [class*="button"] {
