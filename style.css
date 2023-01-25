@@ -164,6 +164,10 @@ body {
 	grid-template-columns: none;
     }
 
+    .flex-dock > [class*="button"] {
+	flex: 1;
+    }
+
     /* Keep memory and control-panel as vertical button-docks, but change
     the rest to horizontal */
     .flex-dock:not(.area-memory, .area-control-panel) {
@@ -174,21 +178,12 @@ body {
 	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr)); /* Use minmax */
     }
 
-    .area-memory > [class*="button"] {
-	flex: 1;
-    }
-
     .area-arithmetic {
 	align-items: end;
     }
 
     .area-arithmetic > [class*="button"] {
-	flex: 1;
 	height: var(--button-height);
-    }
-
-    .area-unary > [class*="button"] {
-	flex: 1;
     }
 
     .area-unary {
