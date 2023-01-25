@@ -158,12 +158,11 @@ body {
 @media only screen and (orientation: portrait) {
     body {
 	grid-template-areas:
-	    "arithmetic arithmetic"
-	    "numberpad memory"
-	    "unary control-panel"
-	    ". control-panel";
-
-	grid-template-rows: var(--button-height) calc(var(--button-height) * 4 + var(--default-gap) * 3) var(--button-height);
+	    "arithmetic arithmetic arithmetic arithmetic"
+	    "numberpad numberpad numberpad memory"
+	    "numberpad numberpad numberpad memory"
+	    "unary unary unary control-panel"
+	    "unary unary unary control-panel";
     }
 
     /* Keep memory and control-panel as vertical button-docks, but change
@@ -172,9 +171,35 @@ body {
 	flex-direction: row;
     }
 
-    /* Make sure that the horizontally-positioned buttons occupy the given
-       space */
-    .flex-dock:not(.area-memory, .area-control-panel) > [class*="button"] {
-	flex: var(--button-width);
+    .grid-dock {
+	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr));
+	grid-auto-rows: 1fr;
+	grid-auto-columns: 1fr;
+    }
+
+    .area-memory > [class*="button"] {
+	flex: 1;
+    }
+
+    .area-arithmetic {
+	align-items: end;
+    }
+
+    .area-arithmetic > [class*="button"] {
+	flex: 1;
+	height: var(--button-height);
+    }
+
+    .area-unary > [class*="button"] {
+	flex: 1;
+    }
+
+    .area-unary {
+	align-items: start;
+	height: var(--button-height);
+    }
+
+    .area-unary > div {
+	height: 100%;
     }
 }
