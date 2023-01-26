@@ -175,6 +175,8 @@ body {
 
     body {
 	grid-template-areas:
+	    "display display display display"
+	    "logo logo logo logo"
 	    "arithmetic arithmetic arithmetic arithmetic"
 	    "numberpad numberpad numberpad memory"
 	    "numberpad numberpad numberpad memory"
