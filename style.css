@@ -13,6 +13,7 @@
 html {
     box-sizing: border-box;
     font-size: 100%;
+    font-family: monospace;
     color: var(--default-fg-color);
     background-color: dodgerblue;
 }
@@ -62,6 +63,7 @@ body {
 
 .area-logo {
     grid-area: logo;
+    font-size: 2rem;
 }
 
 .area-numberpad {
@@ -124,7 +126,7 @@ body {
     color: var(--button-fg-color);
     border-radius: var(--default-border-radius);
     background: linear-gradient(var(--button-bg-color-light) 20%, var(--button-bg-color-dark) 80%);
-    font-size: 1.5rem;
+    font-size: 2rem;
 
     --button-bg-color-light: #fafbff;
     --button-fg-color: #010b02;
