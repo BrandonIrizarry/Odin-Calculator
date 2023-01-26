@@ -49,6 +49,14 @@ body {
 
 .area-display {
     grid-area: display;
+    color: black;
+    background-color: cyan;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 10px 20px;
+    font-size: 2rem;
+    border-radius: var(--default-border-radius);
 }
 
 .area-logo {
