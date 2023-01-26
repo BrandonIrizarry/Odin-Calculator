@@ -61,6 +61,12 @@ body {
     border-radius: var(--default-border-radius);
 }
 
+.area-display > p.entry {
+    transform: scale(1, 2);
+    letter-spacing: 3px;
+    font-style: italic;
+}
+
 .area-logo {
     grid-area: logo;
     font-size: 2rem;
