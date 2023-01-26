@@ -188,4 +188,24 @@ body {
     .grid-dock {
 	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr)); /* Use minmax */
     }
+
+    .area-arithmetic {
+	align-items: center;
+    }
+
+    .area-unary {
+	align-items: start;
+    }
+
+    .area-arithmetic > * {
+	height: 75%;
+    }
+
+    .area-unary > * {
+	height: 75%;
+    }
+
+    .area-control-panel {
+	height: 75%;
+    }
 }
