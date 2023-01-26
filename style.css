@@ -199,7 +199,7 @@ body {
 	    ". . . control-panel";
 
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: repeat(8, 1fr);
+	grid-template-rows: 1fr min-content repeat(6, 1fr);
     }
 
     .flex-dock > [class*="button"] {
