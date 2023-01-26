@@ -171,7 +171,7 @@ body {
 	    "unary unary unary control-panel"
 	    ". . . control-panel";
 
-	grid-template-columns: none;
+	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: repeat(8, 1fr);
     }
 
