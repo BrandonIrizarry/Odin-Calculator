@@ -158,20 +158,25 @@ body {
 }
 
 @media only screen and (orientation: portrait) {
+    :root {
+	--button-height: auto; /* Make buttons fit better, and also not cause overflow */
+    }
+
     body {
 	grid-template-areas:
 	    "arithmetic arithmetic arithmetic arithmetic"
 	    "numberpad numberpad numberpad memory"
 	    "numberpad numberpad numberpad memory"
+	    "numberpad numberpad numberpad memory"
 	    "unary unary unary control-panel"
-	    "unary unary unary control-panel";
+	    ". . . control-panel";
 
 	grid-template-columns: none;
+	grid-template-rows: repeat(8, 1fr);
     }
 
     .flex-dock > [class*="button"] {
 	flex: 1;
-	height: var(--button-height);
     }
 
     /* Keep memory and control-panel as vertical button-docks, but change
@@ -182,13 +187,5 @@ body {
 
     .grid-dock {
 	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr)); /* Use minmax */
-    }
-
-    .area-arithmetic {
-	align-items: end;
-    }
-
-    .area-unary {
-	align-items: start;
     }
 }
