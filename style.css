@@ -38,9 +38,20 @@ body {
     gap: var(--default-gap);
     grid-auto-flow: column;
     grid-template-columns: 3fr repeat(4, minmax(var(--button-width), 1fr));
-    grid-template-areas: "numberpad memory arithmetic unary control-panel";
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+	"display logo logo logo logo"
+	"numberpad memory arithmetic unary control-panel";
 
     padding: var(--default-gap);
+}
+
+.area-display {
+    grid-area: display;
+}
+
+.area-logo {
+    grid-area: logo;
 }
 
 .area-numberpad {
