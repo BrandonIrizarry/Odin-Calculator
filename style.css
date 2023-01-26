@@ -215,7 +215,7 @@ body {
     }
 
     .area-arithmetic {
-	align-items: center;
+	align-items: end;
     }
 
     .area-unary {
@@ -227,7 +227,7 @@ body {
     }
 
     .area-unary > * {
-	height: 75%;
+	height: 100%;
     }
 
     .area-control-panel {
