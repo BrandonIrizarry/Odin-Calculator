@@ -5,7 +5,7 @@
     --default-gap: 10px;
 
     --button-width: 100px;
-    --button-height: 80px;
+    --button-height: auto;
 }
 
 /* GLOBAL SETTINGS AND RESETS */
@@ -38,7 +38,7 @@ body {
     gap: var(--default-gap);
     grid-auto-flow: column;
     grid-template-columns: 3fr repeat(4, minmax(var(--button-width), 1fr));
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr 3fr;
     grid-template-areas:
 	"display logo logo logo logo"
 	"numberpad memory arithmetic unary control-panel";
@@ -68,10 +68,12 @@ body {
 
 .area-unary {
     grid-area: unary;
+    height: 75%;
 }
 
 .area-control-panel {
     grid-area: control-panel;
+    height: 50%;
 }
 
 [class*="flex-"] {
@@ -105,7 +107,7 @@ body {
 /* Mobile-first: all flex button-docks are vertical, and so use the
    'button-height' custom property */
 .flex-dock > [class*="button"] {
-    flex: 0 1 var(--button-height);
+    flex: 1;
 }
 
 .button {
