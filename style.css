@@ -3,6 +3,7 @@
     --default-bg-color: #005;
     --default-fg-color: #fff;
     --default-gap: 10px;
+    --default-border-radius: 5px;
 
     --button-width: 100px;
     --button-height: auto;
@@ -112,7 +113,7 @@ body {
 
 .button {
     color: var(--button-fg-color);
-    border-radius: 5px;
+    border-radius: var(--default-border-radius);
     background: linear-gradient(var(--button-bg-color-light) 20%, var(--button-bg-color-dark) 80%);
     font-size: 1.5rem;
 
