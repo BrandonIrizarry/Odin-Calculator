@@ -21,19 +21,36 @@ function assertNotNaN (number = 0) {
     return number;
 }
 
-// Return a value consisting of an integer, and a scale factor, such
-// that the intended number is N = I / 10 ** S
-function toFixedPoint (valueString = "") {
+const display = document.querySelector(".entry");
+
+// Read the string occupying the display, and convert it to
+// fixed-point format.
+//
+// Return this fixed-point-formatted object as the internal
+// representation of the number.
+function readValue () {
+    const valueString = display.textContent;
+
     const radixPosition = valueString.indexOf(".");
     const length = valueString.length;
-    const result = [...valueString].filter(char => char !== ".").join("");
+
+    // Remove the decimal point and convert to a simple integer
+    const result = parseInt([...valueString].filter(char => char !== ".").join(""));
+
 
     switch (radixPosition) {
-    case -1:
+    case -1: // decimal point not found
 	throw new Error("display entry is missing decimal point");
-    case length - 1:
+    case length - 1: // number is an integer
 	return { result, scale: 0 };
     default:
 	return { result, scale: length - radixPosition - 1 };
     }
+}
+
+// Convert the internal representation into a string, and display it.
+function writeValue (fixedPointNumber = {}) {
+    const { result, scale } = fixedPointNumber;
+
+    display.textContent = (result / 10 ** scale).toString();
 }
