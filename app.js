@@ -35,7 +35,7 @@ function readValue () {
     const length = valueString.length;
 
     // Remove the decimal point and convert to a simple integer
-    const result = parseInt([...valueString].filter(char => char !== ".").join(""));
+    const result = assertNotNaN(parseInt([...valueString].filter(char => char !== ".").join("")));
 
 
     switch (radixPosition) {
