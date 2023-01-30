@@ -21,7 +21,7 @@ function assertNotNaN (number = 0) {
     return number;
 }
 
-const display = document.querySelector(".entry");
+const display = assertElement(document.querySelector(".entry"));
 
 // Read the string occupying the display, and convert it to
 // fixed-point format.
