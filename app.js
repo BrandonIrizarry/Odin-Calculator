@@ -62,3 +62,14 @@ function writeValue (fixedPointNumber = {}) {
 
     display.textContent = resultChars.join("");
 }
+
+const numberButtons = document.querySelectorAll(".area-numberpad > *");
+
+numberButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
+    const digit = assertNotNaN(parseInt(numberButton.textContent));
+    let { result, scale } = readValue();
+
+    result = result * 10 + digit;
+
+    writeValue({ result, scale });
+}));
