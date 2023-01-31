@@ -93,3 +93,5 @@ decimalPointButton.addEventListener("click", () => {
     doScaleIncrease = true;
     decimalPointButton.classList.add("js-active");
 });
+
+const backspaceButton = assertElement(document.querySelector("#js-backspace"));
