@@ -1,10 +1,13 @@
 // @ts-check
 "use strict";
 
+// Single elements
 const display = assertElement(document.querySelector(".entry"));
 const decimalPointButton = assertElement(document.querySelector(".area-numberpad > .decimal-point"));
-const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
 const backspaceButton = assertElement(document.querySelector("#js-backspace"));
+
+// NodeLists
+const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
 function initCalcState () {
