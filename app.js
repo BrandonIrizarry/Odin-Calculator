@@ -95,3 +95,15 @@ decimalPointButton.addEventListener("click", () => {
 });
 
 const backspaceButton = assertElement(document.querySelector("#js-backspace"));
+
+backspaceButton.addEventListener("click", () => {
+    let { result, scale } = readValue();
+
+    // Use integer division
+    result = Math.floor(result / 10);
+
+    // Compensate for the lost digit by adjusting the scale
+    scale--;
+
+    writeValue({ result, scale });
+});
