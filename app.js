@@ -52,12 +52,13 @@ function readValue () {
 function writeValue (fixedPointNumber = {}) {
     const { result, scale } = fixedPointNumber;
 
-    // The following is necessary to concisely implement correct
-    // behavior for when 'scale' equals 0, that is, when 'result' is
-    // an integer, and so an "aesthetic" decimal point must be
-    // inserted at the far-right of the number.
     const resultChars = [...result.toString()];
     const length = resultChars.length;
+
+    // Insert decimal point into number to be displayed.
+    //
+    // If 'scale' equals 0, a decimal point will be inserted at the far-right of the number,
+    // which is meant as an aesthetic touch.
     resultChars.splice(length - scale, 0, ".");
 
     display.textContent = resultChars.join("");
