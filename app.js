@@ -11,6 +11,14 @@ function assertElement (element = new Element()) {
     return element;
 }
 
+function assertElementCollection (collection = new NodeList()) {
+    if (collection.length === 0) {
+	throw new Error("empty element collection");
+    }
+
+    return collection;
+}
+
 // Ensure that a given numerical value isn't NaN.
 // If all is well, return the same number.
 function assertNotNaN (number = 0) {
@@ -72,11 +80,7 @@ function writeValue (fixedPointNumber = {}) {
 
 // NUMBER BUTTONS ACTION
 
-const numberButtons = document.querySelectorAll(".area-numberpad > .js-number");
-
-if (numberButtons.length === 0) {
-    throw new Error("Missing number buttons");
-}
+const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
 
 let doScaleIncrease = false;
 
@@ -123,3 +127,7 @@ backspaceButton.addEventListener("click", () => {
 
     writeValue({ result, scale });
 });
+
+// OPERATOR BUTTONS ACTION
+
+const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
