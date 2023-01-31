@@ -72,6 +72,10 @@ function writeValue (fixedPointNumber = {}) {
 
 const numberButtons = document.querySelectorAll(".area-numberpad > .js-number");
 
+if (numberButtons.length === 0) {
+    throw new Error("Missing number buttons");
+}
+
 let doScaleIncrease = false;
 
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
@@ -87,7 +91,7 @@ numberButtons.forEach(numberButton => numberButton.addEventListener("click", () 
     writeValue({ result, scale });
 }));
 
-const decimalPointButton = document.querySelector(".area-numberpad > .decimal-point");
+const decimalPointButton = assertElement(document.querySelector(".area-numberpad > .decimal-point"));
 
 decimalPointButton.addEventListener("click", () => {
     doScaleIncrease = true;
