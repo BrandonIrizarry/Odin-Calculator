@@ -61,6 +61,12 @@ function writeValue (fixedPointNumber = {}) {
     // which is meant as an aesthetic touch.
     resultChars.splice(length - scale, 0, ".");
 
+    // For numbers between 0 and 1, preserve the leading zero for
+    // aesthetics
+    if (result / 10 ** scale < 1 && result !== 0) {
+	resultChars.splice(0, 0, "0");
+    }
+
     display.textContent = resultChars.join("");
 }
 
