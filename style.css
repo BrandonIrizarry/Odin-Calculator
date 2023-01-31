@@ -232,6 +232,7 @@ body {
 
     .area-unary {
 	align-items: start;
+	height: 62%;
     }
 
     .area-arithmetic > * {
