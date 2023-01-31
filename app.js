@@ -84,4 +84,5 @@ const decimalPointButton = document.querySelector(".area-numberpad > .decimal-po
 
 decimalPointButton.addEventListener("click", () => {
     doScaleIncrease = true;
+    decimalPointButton.classList.add("js-active");
 });

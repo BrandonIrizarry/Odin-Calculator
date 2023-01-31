@@ -137,6 +137,9 @@ body {
     --button-bg-color-light: #fafbff;
     --button-fg-color: #010b02;
     --button-bg-color-dark: #a2a2a2;
+
+    --button-bg-color-js-active-light: #0f0;
+    --button-bg-colot-js-active-dark: forestgreen;
 }
 
 .button:active {
@@ -254,4 +257,8 @@ body {
 	border: 1px solid white;
 	border-radius: var(--default-border-radius);
     }
+}
+
+.js-active {
+    background: linear-gradient(var(--button-bg-color-js-active-light) 20%, var(--button-bg-colot-js-active-dark) 80%);
 }
