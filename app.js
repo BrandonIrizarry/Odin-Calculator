@@ -99,10 +99,10 @@ const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 backspaceButton.addEventListener("click", () => {
     let { result, scale } = readValue();
 
-    // Use integer division
+    // Use integer division to eliminate the current ones digit
     result = Math.floor(result / 10);
 
-    // Compensate for the lost digit by adjusting the scale
+    // Compensate for the lost ones digit
     scale--;
 
     writeValue({ result, scale });
