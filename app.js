@@ -99,6 +99,12 @@ const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 backspaceButton.addEventListener("click", () => {
     let { result, scale } = readValue();
 
+    // Deleting past the decimal point should deactivate it
+    if (scale === 0) {
+	doScaleIncrease = false;
+	decimalPointButton.classList.remove("js-active");
+    }
+
     // Use integer division to eliminate the current ones digit
     result = Math.floor(result / 10);
 
