@@ -63,7 +63,7 @@ function writeValue (fixedPointNumber = {}) {
     display.textContent = resultChars.join("");
 }
 
-const numberButtons = document.querySelectorAll(".area-numberpad > *");
+const numberButtons = document.querySelectorAll(".area-numberpad > .js-number");
 
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
     const digit = assertNotNaN(parseInt(numberButton.textContent));
