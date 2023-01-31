@@ -65,11 +65,23 @@ function writeValue (fixedPointNumber = {}) {
 
 const numberButtons = document.querySelectorAll(".area-numberpad > .js-number");
 
+let doScaleIncrease = false;
+
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
     const digit = assertNotNaN(parseInt(numberButton.textContent));
     let { result, scale } = readValue();
 
     result = result * 10 + digit;
 
+    if (doScaleIncrease) {
+	scale++;
+    }
+
     writeValue({ result, scale });
 }));
+
+const decimalPointButton = document.querySelector(".area-numberpad > .decimal-point");
+
+decimalPointButton.addEventListener("click", () => {
+    doScaleIncrease = true;
+});
