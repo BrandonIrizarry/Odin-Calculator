@@ -10,31 +10,31 @@ const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
-function initCalcState () {
+function initDecimalPointState () {
     let decimalPointActive = false;
 
-    function activateDecimalPoint () {
+    function activate () {
 	decimalPointActive = true;
 	decimalPointButton.classList.add("js-active");
     }
 
-    function deactivateDecimalPoint () {
+    function deactivate () {
 	decimalPointActive = false;
 	decimalPointButton.classList.remove("js-active");
     }
 
-    function decimalPointIsActive () {
+    function isActive () {
 	return decimalPointActive;
     }
 
     return {
-	activateDecimalPoint,
-	deactivateDecimalPoint,
-	decimalPointIsActive,
+	activate,
+	deactivate,
+	isActive,
     };
 }
 
-const calcState = initCalcState();
+const decimalPointState = initDecimalPointState();
 
 // Read the string occupying the display, and convert it to
 // fixed-point format.
@@ -92,7 +92,7 @@ numberButtons.forEach(numberButton => numberButton.addEventListener("click", () 
 
     result = result * 10 + digit;
 
-    if (calcState.decimalPointIsActive()) {
+    if (decimalPointState.isActive()) {
 	scale++;
     }
 
@@ -100,7 +100,7 @@ numberButtons.forEach(numberButton => numberButton.addEventListener("click", () 
 }));
 
 // Decimal point button
-decimalPointButton.addEventListener("click", calcState.activateDecimalPoint);
+decimalPointButton.addEventListener("click", decimalPointState.activate);
 
 // Backspace button
 backspaceButton.addEventListener("click", () => {
@@ -108,7 +108,7 @@ backspaceButton.addEventListener("click", () => {
 
     // Deleting past the decimal point should deactivate it
     if (scale === 0) {
-	calcState.deactivateDecimalPoint();
+	decimalPointState.deactivate();
     }
 
     // Use integer division to eliminate the current ones digit
