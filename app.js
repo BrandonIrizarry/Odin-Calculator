@@ -70,6 +70,8 @@ function writeValue (fixedPointNumber = {}) {
     display.textContent = resultChars.join("");
 }
 
+// NUMBER BUTTONS ACTION
+
 const numberButtons = document.querySelectorAll(".area-numberpad > .js-number");
 
 if (numberButtons.length === 0) {
@@ -91,12 +93,16 @@ numberButtons.forEach(numberButton => numberButton.addEventListener("click", () 
     writeValue({ result, scale });
 }));
 
+// DECIMAL-POINT BUTTON ACTION
+
 const decimalPointButton = assertElement(document.querySelector(".area-numberpad > .decimal-point"));
 
 decimalPointButton.addEventListener("click", () => {
     doScaleIncrease = true;
     decimalPointButton.classList.add("js-active");
 });
+
+// BACKSPACE BUTTON ACTION
 
 const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 
