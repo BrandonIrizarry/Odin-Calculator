@@ -5,6 +5,7 @@
 const display = assertElement(document.querySelector(".entry"));
 const decimalPointButton = assertElement(document.querySelector(".area-numberpad > .decimal-point"));
 const backspaceButton = assertElement(document.querySelector("#js-backspace"));
+const numberPad = document.querySelector(".area-numberpad");
 
 // NodeLists
 const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
@@ -120,6 +121,68 @@ backspaceButton.addEventListener("click", () => {
 
     writeValue({ result, scale });
 });
+
+const opBuffer = {
+    firstOperand: null,
+    operation: null
+};
+
+arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
+    const currentOperation = arithmeticButton.textContent;
+
+    // If there's already a buffered operand:
+    // 1. Perform the current computation (use buffered 'firstOperand' and 'operation').
+    // 2. Write the result to the display.
+    // 3. Buffer the result of the computation.
+    // 4. Buffer the current operation.
+    if (Boolean(opBuffer.firstOperand)) {
+	const secondOperand = readValue();
+	const rawResult = operate(opBuffer.firstOperand, secondOperand, opBuffer.operation);
+	let stringResult = rawResult.toString();
+
+	// Make stringResult compatible as input for 'readValue'
+	if (rawResult === Math.floor(rawResult)) {
+	    stringResult += ".";
+	}
+
+	writeValue(readValue(stringResult));
+
+	opBuffer.firstOperand = rawResult;
+	opBuffer.operation = currentOperation;
+    }
+
+    // If there isn't already a buffered operand:
+    // 1. Buffer the currently displayed value.
+    // 2. Buffer the current operation.
+    // 3. Make the next numberpad-button press overwrite the currently displayed contents,
+    //    as if the previous content had been '0.'.
+    opBuffer.firstOperand = readValue();
+    opBuffer.operation = currentOperation;
+
+    numberPad.addEventListener("click", function () {
+	writeValue(zeroValue);
+    }, { capture: true, once: true });
+
+}));
+
+function operate ({ result: result1, scale: scale1 }, { result: result2, scale: scale2 }, operation = "") {
+    const num1 = result1 / 10 ** scale1;
+    const num2 = result2 / 10 ** scale2;
+
+    switch (operation) {
+    case "+":
+	return num1 + num2;
+    case "-":
+	return num1 - num2;
+    case "*":
+	return num1 * num2;
+    case "/":
+	if (num2 === 0) throw new Error("zero divisor");
+	return num1 / num2;
+    default:
+	throw new Error(`unknown operation: ${operation}`);
+    }
+}
 
 // ASSERT-GUARD DEFINITIONS
 
