@@ -10,6 +10,9 @@ const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
+// Special value representing zero
+const zeroValue = { result: 0, scale: 0 };
+
 function initDecimalPointState () {
     let decimalPointActive = false;
 
