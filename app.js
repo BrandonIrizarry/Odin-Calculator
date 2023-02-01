@@ -166,6 +166,8 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 
 }));
 
+// THE 'OPERATE' FUNCTION
+
 function operate ({ result: result1, scale: scale1 }, { result: result2, scale: scale2 }, operation = "") {
     const num1 = result1 / 10 ** scale1;
     const num2 = result2 / 10 ** scale2;
