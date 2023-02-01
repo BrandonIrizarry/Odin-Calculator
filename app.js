@@ -147,9 +147,6 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 	}
 
 	writeValue(readValue(stringResult));
-
-	opBuffer.firstOperand = rawResult;
-	opBuffer.operation = currentOperation;
     }
 
     // If there isn't already a buffered operand:
