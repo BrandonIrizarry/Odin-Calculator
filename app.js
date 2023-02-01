@@ -41,9 +41,7 @@ const decimalPointState = initDecimalPointState();
 //
 // Return this fixed-point-formatted object as the internal
 // representation of the number.
-function readValue () {
-    const valueString = display.textContent;
-
+function readValue (valueString = display.textContent) {
     const radixPosition = valueString.indexOf(".");
     const length = valueString.length;
 
