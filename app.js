@@ -166,6 +166,31 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 
 }));
 
+equalsButton.addEventListener("click", () => {
+    if (Boolean(opBuffer.firstOperand)) {
+	const secondOperand = readValue();
+	const rawResult = operate(opBuffer.firstOperand, secondOperand, opBuffer.operation);
+	let stringResult = rawResult.toString();
+
+	// Make stringResult compatible as input for 'readValue'
+	if (rawResult === Math.floor(rawResult)) {
+	    stringResult += ".";
+	}
+
+	writeValue(readValue(stringResult));
+
+	// Reset the opBuffer
+	opBuffer.firstOperand = null;
+	opBuffer.operation = null;
+
+	numberPad.addEventListener("click", function () {
+	    writeValue(zeroValue);
+	    decimalPointState.deactivate();
+	}, { capture: true, once: true });
+    }
+});
+
+
 // THE 'OPERATE' FUNCTION
 
 function operate ({ result: result1, scale: scale1 }, { result: result2, scale: scale2 }, operation = "") {
