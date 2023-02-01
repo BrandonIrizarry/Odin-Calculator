@@ -6,6 +6,7 @@ const display = assertElement(document.querySelector(".entry"));
 const decimalPointButton = assertElement(document.querySelector(".area-numberpad > .decimal-point"));
 const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 const numberPad = document.querySelector(".area-numberpad");
+const equalsButton = document.querySelector("#js-equals");
 
 // NodeLists
 const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
