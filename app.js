@@ -162,6 +162,7 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 
     numberPad.addEventListener("click", function () {
 	writeValue(zeroValue);
+	decimalPointState.deactivate();
     }, { capture: true, once: true });
 
 }));
