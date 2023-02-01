@@ -128,6 +128,16 @@ const opBuffer = {
     operation: null
 };
 
+function prepareForNextInput (firstOperand = {}, currentOperation = "") {
+    opBuffer.firstOperand = firstOperand;
+    opBuffer.operation = currentOperation;
+
+    numberPad.addEventListener("click", function () {
+	writeValue(zeroValue);
+	decimalPointState.deactivate();
+    }, { capture: true, once: true });
+}
+
 arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
     const currentOperation = arithmeticButton.textContent;
 
@@ -144,14 +154,7 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 	writeValue(readValue(stringResult));
     }
 
-    opBuffer.firstOperand = readValue();
-    opBuffer.operation = currentOperation;
-
-    numberPad.addEventListener("click", function () {
-	writeValue(zeroValue);
-	decimalPointState.deactivate();
-    }, { capture: true, once: true });
-
+    prepareForNextInput(readValue(), currentOperation);
 }));
 
 equalsButton.addEventListener("click", () => {
@@ -167,14 +170,7 @@ equalsButton.addEventListener("click", () => {
 
 	writeValue(readValue(stringResult));
 
-	// Reset the opBuffer
-	opBuffer.firstOperand = null;
-	opBuffer.operation = null;
-
-	numberPad.addEventListener("click", function () {
-	    writeValue(zeroValue);
-	    decimalPointState.deactivate();
-	}, { capture: true, once: true });
+	prepareForNextInput(null, null);
     }
 });
 
