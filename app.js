@@ -131,11 +131,6 @@ const opBuffer = {
 arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
     const currentOperation = arithmeticButton.textContent;
 
-    // If there's already a buffered operand:
-    // 1. Perform the current computation (use buffered 'firstOperand' and 'operation').
-    // 2. Write the result to the display.
-    // 3. Buffer the result of the computation.
-    // 4. Buffer the current operation.
     if (Boolean(opBuffer.firstOperand)) {
 	const secondOperand = readValue();
 	const rawResult = operate(opBuffer.firstOperand, secondOperand, opBuffer.operation);
@@ -149,11 +144,6 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 	writeValue(readValue(stringResult));
     }
 
-    // If there isn't already a buffered operand:
-    // 1. Buffer the currently displayed value.
-    // 2. Buffer the current operation.
-    // 3. Make the next numberpad-button press overwrite the currently displayed contents,
-    //    as if the previous content had been '0.'.
     opBuffer.firstOperand = readValue();
     opBuffer.operation = currentOperation;
 
