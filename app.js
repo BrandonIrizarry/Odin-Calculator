@@ -13,16 +13,61 @@ const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*")
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
+function initEditor () {
+    let decimalPointUsed = false;
+
+    function insert (buffer = "", char = "") {
+        if (decimalPointUsed && char === ".") return buffer;
+
+        buffer += char;
+
+        return buffer;
+    }
+
+    function backspace (buffer = "") {
+        return buffer.slice(0, -1);
+    }
+
+    function flagDecimalPoint () {
+        decimalPointUsed = true;
+    }
+
+    function unflagDecimalPoint () {
+        decimalPointUsed = false;
+    }
+
+    return {
+        insert,
+        flagDecimalPoint,
+        unflagDecimalPoint,
+        backspace,
+    };
+}
+
+const editor = initEditor();
+
 // EVENT LISTENERS
 
 // All numberpad buttons
 numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () => {
-    display.textContent += numberPadButton.textContent;
+    const newChar = numberPadButton.textContent;
+
+    display.textContent = editor.insert(display.textContent, numberPadButton.textContent);
+
+    if (newChar === ".") {
+        editor.flagDecimalPoint();
+    }
 }));
 
 // Backspace button
 backspaceButton.addEventListener("click", () => {
-    display.textContent = display.textContent.slice(0, -1);
+    const deletedChar = display.textContent.at(-1);
+
+    if (deletedChar === ".") {
+        editor.unflagDecimalPoint();
+    }
+
+    display.textContent = editor.backspace(display.textContent);
 });
 
 // ASSERT-GUARD DEFINITIONS
