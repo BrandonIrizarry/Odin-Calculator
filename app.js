@@ -19,6 +19,11 @@ digitButtons.forEach(numberButton => numberButton.addEventListener("click", () =
     display.textContent += numberButton.textContent;
 }));
 
+// Backspace button
+backspaceButton.addEventListener("click", () => {
+    display.textContent = display.textContent.slice(0, -1);
+});
+
 // ASSERT-GUARD DEFINITIONS
 
 // Ensure that a DOM element is non-null.
