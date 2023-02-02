@@ -65,9 +65,7 @@ function readValue (valueString = display.textContent) {
 }
 
 // Convert the internal representation into a string, and display it.
-function writeValue (fixedPointNumber = {}) {
-    const { result, scale } = fixedPointNumber;
-
+function writeValue ({ result, scale }) {
     const resultChars = [...result.toString()];
     const length = resultChars.length;
 
