@@ -19,23 +19,23 @@ function initDecimalPointState () {
     let decimalPointActive = false;
 
     function activate () {
-	decimalPointActive = true;
-	decimalPointButton.classList.add("js-active");
+        decimalPointActive = true;
+        decimalPointButton.classList.add("js-active");
     }
 
     function deactivate () {
-	decimalPointActive = false;
-	decimalPointButton.classList.remove("js-active");
+        decimalPointActive = false;
+        decimalPointButton.classList.remove("js-active");
     }
 
     function isActive () {
-	return decimalPointActive;
+        return decimalPointActive;
     }
 
     return {
-	activate,
-	deactivate,
-	isActive,
+        activate,
+        deactivate,
+        isActive,
     };
 }
 
@@ -56,11 +56,11 @@ function readValue (valueString = display.textContent) {
 
     switch (radixPosition) {
     case -1: // decimal point not found
-	throw new Error("display entry is missing decimal point");
+        throw new Error("display entry is missing decimal point");
     case length - 1: // number is an integer
-	return { result, scale: 0 };
+        return { result, scale: 0 };
     default:
-	return { result, scale: length - radixPosition - 1 };
+        return { result, scale: length - radixPosition - 1 };
     }
 }
 
@@ -80,7 +80,7 @@ function writeValue (fixedPointNumber = {}) {
     // For numbers between 0 and 1, preserve the leading zero for
     // aesthetics
     if (result / 10 ** scale < 1 && result !== 0) {
-	resultChars.splice(0, 0, "0");
+        resultChars.splice(0, 0, "0");
     }
 
     display.textContent = resultChars.join("");
@@ -96,7 +96,7 @@ numberButtons.forEach(numberButton => numberButton.addEventListener("click", () 
     result = result * 10 + digit;
 
     if (decimalPointState.isActive()) {
-	scale++;
+        scale++;
     }
 
     writeValue({ result, scale });
@@ -111,7 +111,7 @@ backspaceButton.addEventListener("click", () => {
 
     // Deleting past the decimal point should deactivate it
     if (scale === 0) {
-	decimalPointState.deactivate();
+        decimalPointState.deactivate();
     }
 
     // Use integer division to eliminate the current ones digit
@@ -133,8 +133,8 @@ function prepareForNextInput (firstOperand = {}, currentOperation = "") {
     opBuffer.operation = currentOperation;
 
     numberPad.addEventListener("click", function () {
-	writeValue(zeroValue);
-	decimalPointState.deactivate();
+        writeValue(zeroValue);
+        decimalPointState.deactivate();
     }, { capture: true, once: true });
 }
 
@@ -145,7 +145,7 @@ function produceResult () {
 
     // Make stringResult compatible as input for 'readValue'
     if (rawResult === Math.floor(rawResult)) {
-	stringResult += ".";
+        stringResult += ".";
     }
 
     writeValue(readValue(stringResult));
@@ -155,7 +155,7 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
     const currentOperation = arithmeticButton.textContent;
 
     if (Boolean(opBuffer.firstOperand)) {
-	produceResult();
+        produceResult();
     }
 
     prepareForNextInput(readValue(), currentOperation);
@@ -163,8 +163,8 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 
 equalsButton.addEventListener("click", () => {
     if (Boolean(opBuffer.firstOperand)) {
-	produceResult();
-	prepareForNextInput(null, null);
+        produceResult();
+        prepareForNextInput(null, null);
     }
 });
 
@@ -177,16 +177,16 @@ function operate ({ result: result1, scale: scale1 }, { result: result2, scale: 
 
     switch (operation) {
     case "+":
-	return num1 + num2;
+        return num1 + num2;
     case "-":
-	return num1 - num2;
+        return num1 - num2;
     case "*":
-	return num1 * num2;
+        return num1 * num2;
     case "/":
-	if (num2 === 0) throw new Error("zero divisor");
-	return num1 / num2;
+        if (num2 === 0) throw new Error("zero divisor");
+        return num1 / num2;
     default:
-	throw new Error(`unknown operation: ${operation}`);
+        throw new Error(`unknown operation: ${operation}`);
     }
 }
 
@@ -196,7 +196,7 @@ function operate ({ result: result1, scale: scale1 }, { result: result2, scale: 
 // If all is well, return the same element.
 function assertElement (element = new Element()) {
     if (element == null) {
-	throw new Error("display-element is null");
+        throw new Error("display-element is null");
     }
 
     return element;
@@ -204,7 +204,7 @@ function assertElement (element = new Element()) {
 
 function assertElementCollection (collection = new NodeList()) {
     if (collection.length === 0) {
-	throw new Error("empty element collection");
+        throw new Error("empty element collection");
     }
 
     return collection;
@@ -214,7 +214,7 @@ function assertElementCollection (collection = new NodeList()) {
 // If all is well, return the same number.
 function assertNotNaN (number = 0) {
     if (isNaN(number)) {
-	throw new Error("parameter is NaN");
+        throw new Error("parameter is NaN");
     }
 
     return number;
