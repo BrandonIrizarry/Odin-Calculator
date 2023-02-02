@@ -138,20 +138,24 @@ function prepareForNextInput (firstOperand = {}, currentOperation = "") {
     }, { capture: true, once: true });
 }
 
+function produceResult () {
+    const secondOperand = readValue();
+    const rawResult = operate(opBuffer.firstOperand, secondOperand, opBuffer.operation);
+    let stringResult = rawResult.toString();
+
+    // Make stringResult compatible as input for 'readValue'
+    if (rawResult === Math.floor(rawResult)) {
+	stringResult += ".";
+    }
+
+    writeValue(readValue(stringResult));
+}
+
 arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
     const currentOperation = arithmeticButton.textContent;
 
     if (Boolean(opBuffer.firstOperand)) {
-	const secondOperand = readValue();
-	const rawResult = operate(opBuffer.firstOperand, secondOperand, opBuffer.operation);
-	let stringResult = rawResult.toString();
-
-	// Make stringResult compatible as input for 'readValue'
-	if (rawResult === Math.floor(rawResult)) {
-	    stringResult += ".";
-	}
-
-	writeValue(readValue(stringResult));
+	produceResult();
     }
 
     prepareForNextInput(readValue(), currentOperation);
@@ -159,17 +163,7 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
 
 equalsButton.addEventListener("click", () => {
     if (Boolean(opBuffer.firstOperand)) {
-	const secondOperand = readValue();
-	const rawResult = operate(opBuffer.firstOperand, secondOperand, opBuffer.operation);
-	let stringResult = rawResult.toString();
-
-	// Make stringResult compatible as input for 'readValue'
-	if (rawResult === Math.floor(rawResult)) {
-	    stringResult += ".";
-	}
-
-	writeValue(readValue(stringResult));
-
+	produceResult();
 	prepareForNextInput(null, null);
     }
 });
