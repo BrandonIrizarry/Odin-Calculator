@@ -3,13 +3,13 @@
 
 // Single elements
 const display = assertElement(document.querySelector(".entry"));
-const decimalPointButton = assertElement(document.querySelector(".area-numberpad > .decimal-point"));
 const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 const numberPad = document.querySelector(".area-numberpad");
 const equalsButton = document.querySelector("#js-equals");
+const decimalPointButton = assertElement(numberPad.querySelector(".decimal-point"));
 
 // NodeLists
-const digitButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
+const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
 // EVENT LISTENERS
