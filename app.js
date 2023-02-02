@@ -88,7 +88,10 @@ function writeValue ({ result, scale }) {
 
 // Number buttons
 numberButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
-    const digit = assertNotNaN(parseInt(numberButton.textContent));
+    const digitText = numberButton.textContent;
+    const digit = assertNotNaN(parseInt(digitText));
+
+    // Read the value from the display as a fixed-point number
     let { result, scale } = readValue();
 
     result = result * 10 + digit;
