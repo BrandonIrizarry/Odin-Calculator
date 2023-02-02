@@ -9,14 +9,15 @@ const equalsButton = document.querySelector("#js-equals");
 const decimalPointButton = assertElement(numberPad.querySelector(".decimal-point"));
 
 // NodeLists
+const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
 // EVENT LISTENERS
 
-// Digit buttons
-digitButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
-    display.textContent += numberButton.textContent;
+// All numberpad buttons
+numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () => {
+    display.textContent += numberPadButton.textContent;
 }));
 
 // Backspace button
