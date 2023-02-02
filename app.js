@@ -7,6 +7,7 @@ const backspaceButton = assertElement(document.querySelector("#js-backspace"));
 const numberPad = document.querySelector(".area-numberpad");
 const equalsButton = document.querySelector("#js-equals");
 const decimalPointButton = assertElement(numberPad.querySelector(".decimal-point"));
+const clearEntryButton = document.querySelector("#js-clear-entry");
 
 // NodeLists
 const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
@@ -36,11 +37,16 @@ function initEditor () {
         decimalPointUsed = false;
     }
 
+    function clear () {
+        return "";
+    }
+
     return {
         insert,
         flagDecimalPoint,
         unflagDecimalPoint,
         backspace,
+        clear,
     };
 }
 
@@ -68,6 +74,13 @@ backspaceButton.addEventListener("click", () => {
     }
 
     display.textContent = editor.backspace(display.textContent);
+});
+
+// Clear-entry button
+clearEntryButton.addEventListener("click", () => {
+    display.textContent = editor.clear();
+
+    editor.unflagDecimalPoint();
 });
 
 // ASSERT-GUARD DEFINITIONS
