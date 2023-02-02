@@ -9,7 +9,7 @@ const numberPad = document.querySelector(".area-numberpad");
 const equalsButton = document.querySelector("#js-equals");
 
 // NodeLists
-const numberButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
+const digitButtons = assertElementCollection(document.querySelectorAll(".area-numberpad > .js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 
 // Special value representing zero
@@ -86,8 +86,8 @@ function writeValue ({ result, scale }) {
 
 // EVENT LISTENERS
 
-// Number buttons
-numberButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
+// Digit buttons
+digitButtons.forEach(numberButton => numberButton.addEventListener("click", () => {
     const digitText = numberButton.textContent;
     const digit = assertNotNaN(parseInt(digitText));
 
