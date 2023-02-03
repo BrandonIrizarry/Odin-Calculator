@@ -115,6 +115,17 @@ const operatorTable = {
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
     const currentOperator = arithmeticButton.textContent;
+    const [ firstOperand, operator ] = editor.getSavedText();
+
+    // Flush the editor buffer, producing and displaying a result with
+    // the current display entry and buffered firstOperand and
+    // operator
+    if (firstOperand) {
+        const num1 = assertNotNaN(parseFloat(firstOperand));
+        const num2 = assertNotNaN(parseFloat(display.textContent));
+        display.textContent = operatorTable[operator](num1, num2);
+        editor.clearInternalBuffer();
+    }
 
     numberPad.addEventListener("click", () => {
         const operand = display.textContent;
