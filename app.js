@@ -127,10 +127,10 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
         editor.clearInternalBuffer();
     }
 
-    numberPad.addEventListener("click", () => {
-        const operand = display.textContent;
+    const operand = display.textContent;
+    editor.saveText(operand, currentOperator);
 
-        editor.saveText(operand, currentOperator);
+    numberPad.addEventListener("click", () => {
         display.textContent = editor.clear();
     }, { capture: true, once: true });
 }));
