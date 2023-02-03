@@ -140,6 +140,11 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
         editor.saveText(result.toString());
     }
 
+    numberPad.addEventListener("click", () => {
+        display.textContent = editor.clear();
+        editor.unflagDecimalPoint();
+    }, { capture: true, once: true });
+
     const operand = display.textContent;
 
     if (!firstOperand) {
@@ -147,11 +152,6 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
     }
 
     editor.saveText(currentOperator);
-
-    numberPad.addEventListener("click", () => {
-        display.textContent = editor.clear();
-        editor.unflagDecimalPoint();
-    }, { capture: true, once: true });
 }));
 
 // Equals button
