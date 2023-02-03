@@ -120,18 +120,26 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
     // Flush the editor buffer, producing and displaying a result with
     // the current display entry and buffered firstOperand and
     // operator
-    if (firstOperand) {
+    if (firstOperand && operator) {
         const num1 = assertNotNaN(parseFloat(firstOperand));
         const num2 = assertNotNaN(parseFloat(display.textContent));
-        display.textContent = operatorTable[operator](num1, num2);
+        const result =  operatorTable[operator](num1, num2);
+        display.textContent = result;
         editor.clearInternalBuffer();
+        editor.saveText(result.toString());
     }
 
     const operand = display.textContent;
-    editor.saveText(operand, currentOperator);
+
+    if (!firstOperand) {
+        editor.saveText(operand);
+    }
+
+    editor.saveText(currentOperator);
 
     numberPad.addEventListener("click", () => {
         display.textContent = editor.clear();
+        editor.unflagDecimalPoint();
     }, { capture: true, once: true });
 }));
 
