@@ -8,6 +8,7 @@ const numberPad = document.querySelector(".area-numberpad");
 const equalsButton = document.querySelector("#js-equals");
 const decimalPointButton = assertElement(numberPad.querySelector(".decimal-point"));
 const clearEntryButton = document.querySelector("#js-clear-entry");
+const allClearButton = document.querySelector("#js-all-clear");
 
 // NodeLists
 const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
@@ -98,6 +99,14 @@ clearEntryButton.addEventListener("click", () => {
     display.textContent = editor.clear();
 
     editor.unflagDecimalPoint();
+});
+
+// All-clear button
+allClearButton.addEventListener("click", () => {
+    display.textContent = editor.clear();
+
+    editor.unflagDecimalPoint();
+    editor.clearInternalBuffer();
 });
 
 const operatorTable = {
