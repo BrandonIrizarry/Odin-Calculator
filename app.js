@@ -143,6 +143,25 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
     }, { capture: true, once: true });
 }));
 
+// Equals button
+equalsButton.addEventListener("click", () => {
+    const [ firstOperand, operator ] = editor.getSavedText();
+
+    if (firstOperand && operator) {
+        const num1 = assertNotNaN(parseFloat(firstOperand));
+        const num2 = assertNotNaN(parseFloat(display.textContent));
+        const result = operatorTable[operator](num1, num2);
+        display.textContent = result;
+        editor.clearInternalBuffer();
+        editor.saveText(result.toString());
+    }
+
+    numberPad.addEventListener("click", () => {
+        display.textContent = editor.clear();
+        editor.unflagDecimalPoint();
+    }, { capture: true, once: true });
+});
+
 // ASSERT-GUARD DEFINITIONS
 
 // Ensure that a DOM element is non-null.
