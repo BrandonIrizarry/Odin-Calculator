@@ -46,6 +46,10 @@ function initEditor () {
         internalBuffer = internalBuffer.concat(textTokens);
     }
 
+    function clearInternalBuffer () {
+        internalBuffer = [];
+    }
+
     function getSavedText () {
         return internalBuffer;
     }
@@ -58,6 +62,7 @@ function initEditor () {
         clear,
         saveText,
         getSavedText,
+        clearInternalBuffer,
     };
 }
 
