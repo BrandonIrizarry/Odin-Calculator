@@ -99,6 +99,19 @@ clearEntryButton.addEventListener("click", () => {
     editor.unflagDecimalPoint();
 });
 
+const operatorTable = {
+    ["+"]: (a = 0, b = 0) => a + b,
+    ["-"]: (a = 0, b = 0) => a - b,
+    ["*"]: (a = 0, b = 0) => a * b,
+    ["/"]: (a = 0, b = 0) => {
+        if (b === 0) {
+            throw new RangeError("zero divisor");
+        }
+
+        return a / b;
+    }
+};
+
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
     const currentOperator = arithmeticButton.textContent;
