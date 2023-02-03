@@ -13,6 +13,7 @@ const clearEntryButton = document.querySelector("#js-clear-entry");
 const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
+const unaryButtons = assertElementCollection(document.querySelectorAll(".area-unary > *"));
 
 function initEditor () {
     let decimalPointUsed = false;
@@ -167,6 +168,14 @@ const unaryOperatorTable = {
     ["±"]: (a = 0) => a * -1,
     ["%"]: (a = 0) => a / 100,
 };
+
+// Unary buttons
+unaryButtons.forEach(unaryButton => unaryButton.addEventListener("click", () => {
+    const input = assertNotNaN(parseFloat(display.textContent));
+    const unaryOperator = unaryButton.textContent;
+
+    display.textContent = unaryOperatorTable[unaryOperator](input);
+}));
 
 // ASSERT-GUARD DEFINITIONS
 
