@@ -15,6 +15,7 @@ const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*")
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
 const unaryButtons = assertElementCollection(document.querySelectorAll(".area-unary > *"));
+const memoryButtons = assertElementCollection(document.querySelectorAll(".area-memory > *"));
 
 function initEditor () {
     let decimalPointUsed = false;
@@ -194,6 +195,17 @@ const memoryCell = {
     ["M0"]: function () { this.memoryContent = 0; },
     ["MR"]: function () { return this.memoryContent; },
 };
+
+// Memory buttons
+memoryButtons.forEach(memoryButton => memoryButton.addEventListener("click", () => {
+    const input = assertNotNaN(parseFloat(display.textContent));
+    const memoryLabel = memoryButton.textContent;
+    const output = memoryCell[memoryLabel](input);
+
+    if (output) {
+        display.textContent = output;
+    }
+}));
 
 // ASSERT-GUARD DEFINITIONS
 
