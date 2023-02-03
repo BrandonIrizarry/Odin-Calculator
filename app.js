@@ -16,6 +16,7 @@ const arithmeticButtons = assertElementCollection(document.querySelectorAll(".ar
 
 function initEditor () {
     let decimalPointUsed = false;
+    let internalBuffer = [];
 
     function insert (buffer = "", char = "") {
         if (decimalPointUsed && char === ".") return buffer;
@@ -41,12 +42,22 @@ function initEditor () {
         return "";
     }
 
+    function saveText (...textTokens) {
+        internalBuffer = internalBuffer.concat(textTokens);
+    }
+
+    function getSavedText () {
+        return internalBuffer;
+    }
+
     return {
         insert,
         flagDecimalPoint,
         unflagDecimalPoint,
         backspace,
         clear,
+        saveText,
+        getSavedText,
     };
 }
 
@@ -82,6 +93,14 @@ clearEntryButton.addEventListener("click", () => {
 
     editor.unflagDecimalPoint();
 });
+
+// Arithmetic buttons
+arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
+    numberPad.addEventListener("click", () => {
+        editor.saveText(display.textContent, arithmeticButton.textContent);
+        display.textContent = editor.clear();
+    }, { capture: true, once: true });
+}));
 
 // ASSERT-GUARD DEFINITIONS
 
