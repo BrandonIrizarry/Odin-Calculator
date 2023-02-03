@@ -186,6 +186,15 @@ unaryButtons.forEach(unaryButton => unaryButton.addEventListener("click", () => 
     display.textContent = unaryOperatorTable[unaryOperator](input);
 }));
 
+const memoryCell = {
+    memoryContent: 0,
+
+    ["M+"]: function (a = 0) { this.memoryContent += a; },
+    ["M-"]: function (a = 0) { this.memoryContent -= a; },
+    ["M0"]: function () { this.memoryContent = 0; },
+    ["MR"]: function () { return this.memoryContent; },
+};
+
 // ASSERT-GUARD DEFINITIONS
 
 // Ensure that a DOM element is non-null.
