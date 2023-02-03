@@ -96,10 +96,12 @@ clearEntryButton.addEventListener("click", () => {
 
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
+    const currentOperator = arithmeticButton.textContent;
+
     numberPad.addEventListener("click", () => {
         const operand = display.textContent;
 
-        editor.saveText(operand, arithmeticButton.textContent);
+        editor.saveText(operand, currentOperator);
         display.textContent = editor.clear();
     }, { capture: true, once: true });
 }));
