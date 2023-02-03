@@ -162,6 +162,12 @@ equalsButton.addEventListener("click", () => {
     }, { capture: true, once: true });
 });
 
+const unaryOperatorTable = {
+    ["√"]: (a = 0) => Math.sqrt(a),
+    ["±"]: (a = 0) => a * -1,
+    ["%"]: (a = 0) => a / 100,
+};
+
 // ASSERT-GUARD DEFINITIONS
 
 // Ensure that a DOM element is non-null.
