@@ -217,6 +217,7 @@ document.addEventListener("keydown", event => {
 
     const key = event.key;
 
+    // Handle numberpad
     const numberpad = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
 
     if (numberpad.includes(key)) {
@@ -227,6 +228,7 @@ document.addEventListener("keydown", event => {
         insertFromNumberpad(key);
     }
 
+    // Handle arithmetic
     const arithmetic = ["-", "*", "+", "/"];
 
     if (arithmetic.includes(key)) {
