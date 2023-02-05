@@ -216,6 +216,17 @@ document.addEventListener("keydown", event => {
     event.preventDefault();
 
     const key = event.key;
+
+    const numberpad = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
+
+    if (numberpad.includes(key)) {
+        // Hack needed to get oneshot event listener (that clears the
+        // display) to apply here
+        numberPad.dispatchEvent(new Event("click"));
+
+        insertFromNumberpad(key);
+    }
+
     const arithmetic = ["-", "*", "+", "/"];
 
     if (arithmetic.includes(key)) {
