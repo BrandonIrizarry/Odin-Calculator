@@ -73,16 +73,17 @@ const editor = initEditor();
 
 // EVENT LISTENERS
 
-// All numberpad buttons
-numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () => {
-    const newChar = numberPadButton.textContent;
-
-    display.textContent = editor.insert(display.textContent, numberPadButton.textContent);
+function insertFromNumberpad (newChar = "0") {
+    display.textContent = editor.insert(display.textContent, newChar);
 
     if (newChar === ".") {
         editor.flagDecimalPoint();
     }
-}));
+}
+
+// All numberpad buttons
+numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () =>
+    insertFromNumberpad(numberPadButton.textContent)));
 
 // Backspace button
 backspaceButton.addEventListener("click", () => {
