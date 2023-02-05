@@ -123,9 +123,7 @@ const operatorTable = {
     }
 };
 
-// Arithmetic buttons
-arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener("click", () => {
-    const currentOperator = arithmeticButton.textContent;
+function flushArithmetic (currentOperator = "") {
     const [ firstOperand, operator ] = editor.getSavedText();
 
     // Flush the editor buffer, producing and displaying a result with
@@ -152,7 +150,12 @@ arithmeticButtons.forEach(arithmeticButton => arithmeticButton.addEventListener(
     }
 
     editor.saveText(currentOperator);
-}));
+}
+
+// Arithmetic buttons
+arithmeticButtons.forEach(arithmeticButton =>
+    arithmeticButton.addEventListener("click",() =>
+        flushArithmetic(arithmeticButton.textContent)));
 
 // Equals button
 equalsButton.addEventListener("click", () => {
