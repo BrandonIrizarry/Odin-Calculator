@@ -210,6 +210,18 @@ memoryButtons.forEach(memoryButton => memoryButton.addEventListener("click", () 
     }
 }));
 
+// Keyboard interaction
+document.addEventListener("keydown", event => {
+    event.preventDefault();
+
+    const key = event.key;
+    const arithmetic = ["-", "*", "+", "/"];
+
+    if (arithmetic.includes(key)) {
+        flushArithmetic(key);
+    }
+});
+
 // ASSERT-GUARD DEFINITIONS
 
 // Ensure that a DOM element is non-null.
