@@ -130,11 +130,34 @@ function doArithmetic (currentOperator = "") {
     }
 }
 
+function doEquals () {
+    numberPad.addEventListener("click", () => {
+        clearDisplay();
+        decimalPointState.unflagDecimalPoint();
+    }, { capture: true, once: true });
+
+    const currentDisplayText = display.textContent;
+
+    if (opBuffer.firstOperand != null && opBuffer.operator != null) {
+        const secondOperand = assertNotNaN(parseInt(currentDisplayText));
+        const result = calculate(opBuffer.firstOperand, secondOperand, opBuffer.operator);
+
+        opBuffer.firstOperand = result;
+        opBuffer.operator = null;
+
+        // Write to the display
+        display.textContent = result;
+    }
+}
+
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton =>
     arithmeticButton.addEventListener("click", () => {
         doArithmetic(arithmeticButton.textContent);
     }));
+
+// Equals button
+equalsButton.addEventListener("click", doEquals);
 
 function insertFromNumberpad (newChar = "0") {
     insertIntoDisplay(newChar, decimalPointState.getDecimalPointUsed());
@@ -172,7 +195,8 @@ allClearButton.addEventListener("click", () => {
 
     decimalPointState.unflagDecimalPoint();
 
-    // TODO: clear any buffers used for arithmetic operations
+    opBuffer.firstOperand = null;
+    opBuffer.operator = null;
 });
 
 const unaryOperatorTable = {
