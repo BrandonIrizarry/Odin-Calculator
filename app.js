@@ -240,6 +240,16 @@ document.addEventListener("keydown", event => {
     if (key === "=") {
         equalsButton.dispatchEvent(clickEvent);
     }
+
+    // Handle backspace
+    if (key === "Backspace") {
+        backspaceButton.dispatchEvent(clickEvent);
+    }
+
+    // Handle all clear
+    if (key === "Delete") {
+        allClearButton.dispatchEvent(clickEvent);
+    }
 });
 
 // ASSERT-GUARD DEFINITIONS
