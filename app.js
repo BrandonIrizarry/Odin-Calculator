@@ -47,11 +47,17 @@ function backspaceDisplay () {
 }
 
 function clearDisplay () {
-    display.textContent = "";
+    display.textContent = "0";
 }
 
 function insertIntoDisplay (char = "", decimalPointUsed = false) {
     if (decimalPointUsed && char === ".") return;
+
+    const currentText = display.textContent;
+
+    if (currentText === "0") {
+        display.textContent = "";
+    }
 
     display.textContent += char;
 }
