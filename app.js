@@ -273,6 +273,11 @@ document.addEventListener("keydown", event => {
     if (arithmetic.includes(key)) {
         doArithmetic(key);
     }
+
+    // Handle equals button
+    if (key === "=") {
+        doEquals();
+    }
 });
 
 // ASSERT-GUARD DEFINITIONS
