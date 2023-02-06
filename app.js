@@ -17,21 +17,8 @@ const arithmeticButtons = assertElementCollection(document.querySelectorAll(".ar
 const unaryButtons = assertElementCollection(document.querySelectorAll(".area-unary > *"));
 const memoryButtons = assertElementCollection(document.querySelectorAll(".area-memory > *"));
 
-function initEditor () {
+function initDecimalPointState () {
     let decimalPointUsed = false;
-    let internalBuffer = [];
-
-    function insert (buffer = "", char = "") {
-        if (decimalPointUsed && char === ".") return buffer;
-
-        buffer += char;
-
-        return buffer;
-    }
-
-    function backspace (buffer = "") {
-        return buffer.slice(0, -1);
-    }
 
     function flagDecimalPoint () {
         decimalPointUsed = true;
@@ -41,43 +28,41 @@ function initEditor () {
         decimalPointUsed = false;
     }
 
-    function clear () {
-        return "";
-    }
-
-    function saveText (...textTokens) {
-        internalBuffer = internalBuffer.concat(textTokens);
-    }
-
-    function clearInternalBuffer () {
-        internalBuffer = [];
-    }
-
-    function getSavedText () {
-        return internalBuffer;
+    function getDecimalPointUsed () {
+        return decimalPointUsed;
     }
 
     return {
-        insert,
         flagDecimalPoint,
         unflagDecimalPoint,
-        backspace,
-        clear,
-        saveText,
-        getSavedText,
-        clearInternalBuffer,
+        getDecimalPointUsed,
     };
 }
 
-const editor = initEditor();
+const decimalPointState = initDecimalPointState();
+
+function backspaceDisplay () {
+    const newText = display.textContent.slice(0, -1);
+    display.textContent = newText;
+}
+
+function clearDisplay () {
+    display.textContent = "";
+}
+
+function insertIntoDisplay (char = "", decimalPointUsed = false) {
+    if (decimalPointUsed && char === ".") return;
+
+    display.textContent += char;
+}
 
 // EVENT LISTENERS
 
 function insertFromNumberpad (newChar = "0") {
-    display.textContent = editor.insert(display.textContent, newChar);
+    insertIntoDisplay(newChar, decimalPointState.getDecimalPointUsed());
 
     if (newChar === ".") {
-        editor.flagDecimalPoint();
+        decimalPointState.flagDecimalPoint();
     }
 }
 
@@ -87,94 +72,29 @@ numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("cl
 
 // Backspace button
 backspaceButton.addEventListener("click", () => {
-    const deletedChar = display.textContent.at(-1);
+    const lastChar = display.textContent.at(-1);
 
-    if (deletedChar === ".") {
-        editor.unflagDecimalPoint();
+    if (lastChar === ".") {
+        decimalPointState.unflagDecimalPoint();
     }
 
-    display.textContent = editor.backspace(display.textContent);
+    backspaceDisplay();
 });
 
 // Clear-entry button
 clearEntryButton.addEventListener("click", () => {
-    display.textContent = editor.clear();
+    clearDisplay();
 
-    editor.unflagDecimalPoint();
+    decimalPointState.unflagDecimalPoint();
 });
 
 // All-clear button
 allClearButton.addEventListener("click", () => {
-    display.textContent = editor.clear();
+    clearDisplay();
 
-    editor.unflagDecimalPoint();
-    editor.clearInternalBuffer();
-});
+    decimalPointState.unflagDecimalPoint();
 
-const operatorTable = {
-    ["+"]: (a = 0, b = 0) => a + b,
-    ["-"]: (a = 0, b = 0) => a - b,
-    ["*"]: (a = 0, b = 0) => a * b,
-    ["/"]: (a = 0, b = 0) => {
-        if (b === 0) {
-            throw new RangeError("zero divisor");
-        }
-
-        return a / b;
-    }
-};
-
-function flushArithmetic (currentOperator = "") {
-    const [ firstOperand, operator ] = editor.getSavedText();
-
-    // Flush the editor buffer, producing and displaying a result with
-    // the current display entry and buffered firstOperand and
-    // operator
-    if (firstOperand && operator) {
-        const num1 = assertNotNaN(parseFloat(firstOperand));
-        const num2 = assertNotNaN(parseFloat(display.textContent));
-        const result =  operatorTable[operator](num1, num2);
-        display.textContent = result;
-        editor.clearInternalBuffer();
-        editor.saveText(result.toString());
-    }
-
-    numberPad.addEventListener("click", () => {
-        display.textContent = editor.clear();
-        editor.unflagDecimalPoint();
-    }, { capture: true, once: true });
-
-    const operand = display.textContent;
-
-    if (!firstOperand) {
-        editor.saveText(operand);
-    }
-
-    editor.saveText(currentOperator);
-}
-
-// Arithmetic buttons
-arithmeticButtons.forEach(arithmeticButton =>
-    arithmeticButton.addEventListener("click",() =>
-        flushArithmetic(arithmeticButton.textContent)));
-
-// Equals button
-equalsButton.addEventListener("click", () => {
-    const [ firstOperand, operator ] = editor.getSavedText();
-
-    if (firstOperand && operator) {
-        const num1 = assertNotNaN(parseFloat(firstOperand));
-        const num2 = assertNotNaN(parseFloat(display.textContent));
-        const result = operatorTable[operator](num1, num2);
-        display.textContent = result;
-        editor.clearInternalBuffer();
-        editor.saveText(result.toString());
-    }
-
-    numberPad.addEventListener("click", () => {
-        display.textContent = editor.clear();
-        editor.unflagDecimalPoint();
-    }, { capture: true, once: true });
+    // TODO: clear any buffers used for arithmetic operations
 });
 
 const unaryOperatorTable = {
@@ -227,18 +147,6 @@ document.addEventListener("keydown", event => {
         numberPad.dispatchEvent(clickEvent);
 
         insertFromNumberpad(key);
-    }
-
-    // Handle arithmetic
-    const arithmetic = ["-", "*", "+", "/"];
-
-    if (arithmetic.includes(key)) {
-        flushArithmetic(key);
-    }
-
-    // Handle equal sign
-    if (key === "=") {
-        equalsButton.dispatchEvent(clickEvent);
     }
 
     // Handle backspace
