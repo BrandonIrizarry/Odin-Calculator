@@ -263,8 +263,13 @@ document.addEventListener("keydown", event => {
     }
 
     // Handle all clear
-    if (key === "Delete") {
+    if (key === "Escape") {
         allClearButton.dispatchEvent(clickEvent);
+    }
+
+    // Handle clear entry
+    if (key === "Delete") {
+        clearEntryButton.dispatchEvent(clickEvent);
     }
 
     // Handle arithmetic
