@@ -64,13 +64,76 @@ function insertIntoDisplay (char = "", decimalPointUsed = false) {
 
 // EVENT LISTENERS
 
+const opBuffer = {
+    firstOperand: null,
+    operator: null,
+};
+
+
+const operatorTable = {
+    ["+"]: (a = 0, b = 0) => a + b,
+    ["-"]: (a = 0, b = 0) => a - b,
+    ["*"]: (a = 0, b = 0) => a * b,
+    ["/"]: (a = 0, b = 0) => {
+        if (b === 0) {
+            throw new RangeError("zero divisor");
+        }
+
+        return a / b;
+    }
+};
+
+// TODO: catch zero divisor
+function calculate (a = 0, b = 0, operator = "") {
+    const fn = operatorTable[operator];
+
+    if (!fn) {
+        throw new Error(`unknown operator: ${operator}`);
+    }
+
+    return fn(a, b);
+}
+
+function doArithmetic (currentOperator = "") {
+    numberPad.addEventListener("click", () => {
+        clearDisplay();
+        decimalPointState.unflagDecimalPoint();
+    }, { capture: true, once: true });
+
+    const currentDisplayText = display.textContent;
+
+    // Empty state: firstOperand and operator are null
+    if (opBuffer.firstOperand == null && opBuffer.operator == null) {
+        opBuffer.firstOperand = assertNotNaN(parseInt(currentDisplayText));
+        opBuffer.operator = currentOperator;
+        return;
+    }
+
+    // Result state: a result was left over from a previous
+    // computation (due to '='), but there's no operator yet
+    if (opBuffer.firstOperand != null && opBuffer.operator == null) {
+        opBuffer.operator = currentOperator;
+        return;
+    }
+
+    // Overflow state: both firstOperand and operator are full.
+    if (opBuffer.firstOperand != null && opBuffer.operator != null) {
+        const secondOperand = assertNotNaN(parseInt(currentDisplayText));
+        const result = calculate(opBuffer.firstOperand, secondOperand, opBuffer.operator);
+
+        opBuffer.firstOperand = result;
+        opBuffer.operator = currentOperator;
+
+        // Write to the display
+        display.textContent = result;
+        return;
+    }
+}
+
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton =>
-    arithmeticButton.addEventListener("click",() => {
-        numberPad.addEventListener("click", () => {
-            clearDisplay();
-            decimalPointState.unflagDecimalPoint();
-        }, { capture: true, once: true });
+    arithmeticButton.addEventListener("click", () => {
+        doArithmetic(arithmeticButton.textContent);
     }));
 
 function insertFromNumberpad (newChar = "0") {
