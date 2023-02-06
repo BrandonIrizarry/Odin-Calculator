@@ -64,6 +64,15 @@ function insertIntoDisplay (char = "", decimalPointUsed = false) {
 
 // EVENT LISTENERS
 
+// Arithmetic buttons
+arithmeticButtons.forEach(arithmeticButton =>
+    arithmeticButton.addEventListener("click",() => {
+        numberPad.addEventListener("click", () => {
+            clearDisplay();
+            decimalPointState.unflagDecimalPoint();
+        }, { capture: true, once: true });
+    }));
+
 function insertFromNumberpad (newChar = "0") {
     insertIntoDisplay(newChar, decimalPointState.getDecimalPointUsed());
 
