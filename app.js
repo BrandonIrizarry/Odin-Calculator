@@ -266,6 +266,13 @@ document.addEventListener("keydown", event => {
     if (key === "Delete") {
         allClearButton.dispatchEvent(clickEvent);
     }
+
+    // Handle arithmetic
+    const arithmetic = ["+", "-", "*", "/"];
+
+    if (arithmetic.includes(key)) {
+        doArithmetic(key);
+    }
 });
 
 // ASSERT-GUARD DEFINITIONS
