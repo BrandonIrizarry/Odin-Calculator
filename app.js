@@ -98,7 +98,13 @@ allClearButton.addEventListener("click", () => {
 });
 
 const unaryOperatorTable = {
-    ["√"]: (a = 0) => Math.sqrt(a),
+    ["√"]: (a = 0) => {
+        if (a < 0) {
+            throw new RangeError("can't take a negative square root");
+        }
+
+        return Math.sqrt(a);
+    },
     ["±"]: (a = 0) => a * -1,
     ["%"]: (a = 0) => a / 100,
 };
