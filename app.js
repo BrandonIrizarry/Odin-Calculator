@@ -80,7 +80,18 @@ const operatorTable = {
         }
 
         return a / b;
-    }
+    },
+
+    // Unary operators
+    ["√"]: (a = 0) => {
+        if (a < 0) {
+            throw new RangeError("can't take a negative square root");
+        }
+
+        return Math.sqrt(a);
+    },
+    ["±"]: (a = 0) => a * -1,
+    ["%"]: (a = 0) => a / 100,
 };
 
 // TODO: catch zero divisor
@@ -199,24 +210,12 @@ allClearButton.addEventListener("click", () => {
     opBuffer.operator = null;
 });
 
-const unaryOperatorTable = {
-    ["√"]: (a = 0) => {
-        if (a < 0) {
-            throw new RangeError("can't take a negative square root");
-        }
-
-        return Math.sqrt(a);
-    },
-    ["±"]: (a = 0) => a * -1,
-    ["%"]: (a = 0) => a / 100,
-};
-
 // Unary buttons
 unaryButtons.forEach(unaryButton => unaryButton.addEventListener("click", () => {
     const input = assertNotNaN(parseFloat(display.textContent));
     const unaryOperator = unaryButton.textContent;
 
-    display.textContent = unaryOperatorTable[unaryOperator](input);
+    display.textContent = calculate(input, null, unaryOperator);
 }));
 
 const memoryCell = {
