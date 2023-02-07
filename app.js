@@ -94,15 +94,29 @@ const operatorTable = {
     ["%"]: (a = 0) => a / 100,
 };
 
-// TODO: catch zero divisor
-function calculate (a = 0, b = 0, operator = "") {
+function calculate (a, b = 0, operator = "") {
+    // Assign "no" the value of zero
+    //
+    // This should always end up being the first operand
+    if (a === "no") {
+        a = 0;
+    }
+
     const fn = operatorTable[operator];
 
     if (!fn) {
         throw new Error(`unknown operator: ${operator}`);
     }
 
-    return fn(a, b);
+    let result = null;
+
+    try {
+        result = fn(a, b);
+    } catch {
+        result = "no";
+    }
+
+    return result;
 }
 
 function doArithmetic (currentOperator = "") {
