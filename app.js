@@ -129,7 +129,7 @@ function doArithmetic (currentOperator = "") {
 
     // Empty state: firstOperand and operator are null
     if (opBuffer.firstOperand == null && opBuffer.operator == null) {
-        opBuffer.firstOperand = assertNotNaN(parseInt(currentDisplayText));
+        opBuffer.firstOperand = assertNotNaN(parseFloat(currentDisplayText));
         opBuffer.operator = currentOperator;
         return;
     }
@@ -143,7 +143,7 @@ function doArithmetic (currentOperator = "") {
 
     // Overflow state: both firstOperand and operator are full.
     if (opBuffer.firstOperand != null && opBuffer.operator != null) {
-        const secondOperand = assertNotNaN(parseInt(currentDisplayText));
+        const secondOperand = assertNotNaN(parseFloat(currentDisplayText));
         const result = calculate(opBuffer.firstOperand, secondOperand, opBuffer.operator);
 
         opBuffer.firstOperand = result;
@@ -164,7 +164,7 @@ function doEquals () {
     const currentDisplayText = display.textContent;
 
     if (opBuffer.firstOperand != null && opBuffer.operator != null) {
-        const secondOperand = assertNotNaN(parseInt(currentDisplayText));
+        const secondOperand = assertNotNaN(parseFloat(currentDisplayText));
         const result = calculate(opBuffer.firstOperand, secondOperand, opBuffer.operator);
 
         opBuffer.firstOperand = result;
