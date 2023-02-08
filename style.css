@@ -292,6 +292,13 @@ body {
     }
 }
 
+/* Tablet (Kindle, iPad) */
+@media only screen and (min-width: 800px) {
+    /* Restore large font size for larger displays */
+    .area-display {
+        font-size: 2rem;
+    }
+}
 @media only screen and (min-width: 992px) {
     body {
 	width: 50%;
