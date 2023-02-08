@@ -295,62 +295,45 @@ document.addEventListener("keydown", event => {
     const key = event.key;
     const clickEvent = new Event("click");
 
-    // Handle numberpad
-    const numberpad = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."];
-
-    if (numberpad.includes(key)) {
+    switch (key) {
+    case "1": case "2": case "3": case "4": case "5":
+    case "6": case "7": case "8": case "9": case "0": case ".": {
         // Hack needed to get oneshot event listener (that clears the
         // display) to apply here
         numberPad.dispatchEvent(clickEvent);
-
         const buttonPressed = numberPad.querySelector(`[data-index="${key}"]`);
         buttonPressed.classList.add("js-button-active");
         buttonPressed.dispatchEvent(clickEvent);
     }
-
-    // Handle backspace
-    if (key === "Backspace") {
+        break;
+    case "Backspace":
         backspaceButton.classList.add("js-button-active");
         backspaceButton.dispatchEvent(clickEvent);
-    }
-
-    // Handle all clear
-    if (key === "Escape") {
+        break;
+    case "Escape": // all-clear
         allClearButton.classList.add("js-button-active");
         allClearButton.dispatchEvent(clickEvent);
-    }
-
-    // Handle clear entry
-    if (key === "Delete") {
+        break;
+    case "Delete": // clear-entry
         clearEntryButton.classList.add("js-button-active");
         clearEntryButton.dispatchEvent(clickEvent);
-    }
-
-    // Handle arithmetic
-    const arithmetic = ["+", "-", "*", "/"];
-
-    if (arithmetic.includes(key)) {
+        break;
+    case "+": case "-": case "*": case "/": {
         const buttonPressed = arithmeticButtonDock.querySelector(`[data-index="${key}"]`);
         buttonPressed.classList.add("js-button-active");
-
         buttonPressed.dispatchEvent(clickEvent);
     }
-
-    // Handle equals button
-    if (key === "=") {
+        break;
+    case "=":
         equalsButton.classList.add("js-button-active");
         equalsButton.dispatchEvent(clickEvent);
         doEquals();
-    }
-
-    // Handle memory buttons
-    const memory = ["p", "m", "z", "r"];
-
-    if (memory.includes(key)) {
+        break;
+    case "p": case "m": case "z": case "r":
         const buttonPressed = memoryButtonDock.querySelector(`[data-index="${key}"]`);
         buttonPressed.classList.add("js-button-active");
-
         buttonPressed.dispatchEvent(clickEvent);
+        break;
     }
 });
 
