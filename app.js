@@ -131,14 +131,14 @@ function doArithmetic (currentOperator = "") {
     if (opBuffer.firstOperand == null && opBuffer.operator == null) {
         opBuffer.firstOperand = assertNotNaN(parseFloat(currentDisplayText));
         opBuffer.operator = currentOperator;
-        return;
+        return false;
     }
 
     // Result state: a result was left over from a previous
     // computation (due to '='), but there's no operator yet
     if (opBuffer.firstOperand != null && opBuffer.operator == null) {
         opBuffer.operator = currentOperator;
-        return;
+        return false;
     }
 
     // Overflow state: both firstOperand and operator are full.
@@ -151,8 +151,10 @@ function doArithmetic (currentOperator = "") {
 
         // Write to the display
         display.textContent = result;
-        return;
+        return true;
     }
+
+    throw new Error("control flow should not reach here");
 }
 
 function doEquals () {
@@ -178,7 +180,11 @@ function doEquals () {
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton =>
     arithmeticButton.addEventListener("click", () => {
-        doArithmetic(arithmeticButton.textContent);
+        const computationHappened = doArithmetic(arithmeticButton.textContent);
+
+        if (computationHappened) {
+            display.classList.add("blink");
+        }
     }));
 
 // Equals button
