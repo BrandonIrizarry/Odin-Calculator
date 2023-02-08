@@ -11,6 +11,7 @@ const clearEntryButton = document.querySelector("#js-clear-entry");
 const allClearButton = document.querySelector("#js-all-clear");
 
 // NodeLists
+const allButtons = assertElementCollection(document.querySelectorAll(".button"));
 const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(document.querySelectorAll(".area-arithmetic > *"));
@@ -223,6 +224,10 @@ display.addEventListener("animationend", () => {
     display.classList.remove("blink");
 });
 
+allButtons.forEach(button => button.addEventListener("animationend", function () {
+    this.classList.remove("js-button-active");
+}));
+
 // Backspace button
 backspaceButton.addEventListener("click", () => {
     const lastChar = display.textContent.at(-1);
@@ -298,6 +303,7 @@ document.addEventListener("keydown", event => {
         numberPad.dispatchEvent(clickEvent);
 
         const buttonPressed = numberPad.querySelector(`[data-index="${key}"]`);
+        buttonPressed.classList.add("js-button-active");
         buttonPressed.dispatchEvent(clickEvent);
     }
 
