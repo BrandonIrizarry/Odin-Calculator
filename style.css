@@ -7,6 +7,7 @@
 
     --button-width: 100px;
     --button-height: auto;
+    --cubic-bezier-1: cubic-bezier(0,1.06,.4,1.08);
 }
 
 /* GLOBAL SETTINGS AND RESETS */
@@ -65,6 +66,24 @@ body {
     transform: scale(1, 2);
     letter-spacing: 3px;
     font-style: italic;
+}
+
+.blink {
+    animation: 0.1s var(--cubic-bezier-1) blink;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 .area-logo {

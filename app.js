@@ -193,8 +193,14 @@ function insertFromNumberpad (newChar = "0") {
 }
 
 // All numberpad buttons
-numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () =>
-    insertFromNumberpad(numberPadButton.textContent)));
+numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () => {
+    display.classList.add("blink");
+    insertFromNumberpad(numberPadButton.textContent);
+}));
+
+display.addEventListener("animationend", () => {
+    display.classList.remove("blink");
+});
 
 // Backspace button
 backspaceButton.addEventListener("click", () => {
