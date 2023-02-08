@@ -10,6 +10,7 @@ const decimalPointButton = assertElement(numberPad.querySelector(".decimal-point
 const clearEntryButton = document.querySelector("#js-clear-entry");
 const allClearButton = document.querySelector("#js-all-clear");
 const arithmeticButtonDock = document.querySelector(".area-arithmetic");
+const memoryButtonDock = document.querySelector(".area-memory");
 
 // NodeLists
 const allButtons = assertElementCollection(document.querySelectorAll(".button"));
@@ -341,6 +342,16 @@ document.addEventListener("keydown", event => {
         equalsButton.classList.add("js-button-active");
         equalsButton.dispatchEvent(clickEvent);
         doEquals();
+    }
+
+    // Handle memory buttons
+    const memory = ["p", "m", "z", "r"];
+
+    if (memory.includes(key)) {
+        const buttonPressed = memoryButtonDock.querySelector(`[data-index="${key}"]`);
+        buttonPressed.classList.add("js-button-active");
+
+        buttonPressed.dispatchEvent(clickEvent);
     }
 });
 
