@@ -77,32 +77,31 @@ const opBuffer = {
     operator: null,
 };
 
-
-const operatorTable = {
-    ["+"]: (a = 0, b = 0) => a + b,
-    ["-"]: (a = 0, b = 0) => a - b,
-    ["*"]: (a = 0, b = 0) => a * b,
-    ["/"]: (a = 0, b = 0) => {
-        if (b === 0) {
-            throw new RangeError("zero divisor");
-        }
-
-        return a / b;
-    },
-
-    // Unary operators
-    ["√"]: (a = 0) => {
-        if (a < 0) {
-            throw new RangeError("can't take a negative square root");
-        }
-
-        return Math.sqrt(a);
-    },
-    ["±"]: (a = 0) => a * -1,
-    ["%"]: (a = 0) => a / 100,
-};
-
 function calculate (a, b = 0, operator = "") {
+    const operatorTable = {
+        ["+"]: (a = 0, b = 0) => a + b,
+        ["-"]: (a = 0, b = 0) => a - b,
+        ["*"]: (a = 0, b = 0) => a * b,
+        ["/"]: (a = 0, b = 0) => {
+            if (b === 0) {
+                throw new RangeError("zero divisor");
+            }
+
+            return a / b;
+        },
+
+        // Unary operators
+        ["√"]: (a = 0) => {
+            if (a < 0) {
+                throw new RangeError("can't take a negative square root");
+            }
+
+            return Math.sqrt(a);
+        },
+        ["±"]: (a = 0) => a * -1,
+        ["%"]: (a = 0) => a / 100,
+    };
+
     // Assign "no" the value of zero
     //
     // This should always end up being the first operand
