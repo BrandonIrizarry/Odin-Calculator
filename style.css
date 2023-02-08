@@ -233,6 +233,10 @@ body {
 	--button-height: auto; /* Make buttons fit better, and also not cause overflow */
     }
 
+    .area-display {
+        font-size: 1.3rem;
+    }
+
     body {
 	grid-template-areas:
 	    "display display display equals"
