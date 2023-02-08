@@ -259,6 +259,7 @@ unaryButtons.forEach(unaryButton => unaryButton.addEventListener("click", () => 
     const unaryOperator = unaryButton.textContent;
 
     display.textContent = calculate(input, null, unaryOperator);
+    display.classList.add("blink");
 }));
 
 const memoryCell = {
