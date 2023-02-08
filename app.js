@@ -9,6 +9,7 @@ const equalsButton = document.querySelector("#js-equals");
 const decimalPointButton = assertElement(numberPad.querySelector(".decimal-point"));
 const clearEntryButton = document.querySelector("#js-clear-entry");
 const allClearButton = document.querySelector("#js-all-clear");
+const arithmeticButtonDock = document.querySelector(".area-arithmetic");
 
 // NodeLists
 const allButtons = assertElementCollection(document.querySelectorAll(".button"));
@@ -329,7 +330,10 @@ document.addEventListener("keydown", event => {
     const arithmetic = ["+", "-", "*", "/"];
 
     if (arithmetic.includes(key)) {
-        doArithmetic(key);
+        const buttonPressed = arithmeticButtonDock.querySelector(`[data-index="${key}"]`);
+        buttonPressed.classList.add("js-button-active");
+
+        buttonPressed.dispatchEvent(clickEvent);
     }
 
     // Handle equals button
