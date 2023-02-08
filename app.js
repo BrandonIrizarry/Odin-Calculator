@@ -309,16 +309,19 @@ document.addEventListener("keydown", event => {
 
     // Handle backspace
     if (key === "Backspace") {
+        backspaceButton.classList.add("js-button-active");
         backspaceButton.dispatchEvent(clickEvent);
     }
 
     // Handle all clear
     if (key === "Escape") {
+        allClearButton.classList.add("js-button-active");
         allClearButton.dispatchEvent(clickEvent);
     }
 
     // Handle clear entry
     if (key === "Delete") {
+        clearEntryButton.classList.add("js-button-active");
         clearEntryButton.dispatchEvent(clickEvent);
     }
 
@@ -331,6 +334,8 @@ document.addEventListener("keydown", event => {
 
     // Handle equals button
     if (key === "=") {
+        equalsButton.classList.add("js-button-active");
+        equalsButton.dispatchEvent(clickEvent);
         doEquals();
     }
 });
