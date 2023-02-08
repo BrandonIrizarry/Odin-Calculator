@@ -154,17 +154,34 @@ body {
 .button {
     color: var(--button-fg-color);
     border-radius: var(--default-border-radius);
-    background: linear-gradient(var(--button-bg-color-light) 20%, var(--button-bg-color-dark) 80%);
+    background: var(--button-initial-gradient);
     font-size: 2rem;
 
     --button-bg-color-light: #fafbff;
     --button-fg-color: #010b02;
     --button-bg-color-dark: #a2a2a2;
+    --button-initial-gradient: linear-gradient(var(--button-bg-color-light) 20%, var(--button-bg-color-dark) 80%);
+    --button-final-gradient: linear-gradient(var(--button-bg-color-dark) 20%, var(--button-bg-color-light) 80%);
 }
 
 .button:active {
-    background: linear-gradient(var(--button-bg-color-dark) 20%, var(--button-bg-color-light) 80%);
+    background: var(--button-final-gradient);
     color: white;
+}
+
+.js-button-active {
+    animation: .1s linear active;
+    background: var(--button-final-gradient);
+}
+
+@keyframes active {
+    from {
+        background: var(--button-initial-gradient);
+    }
+
+    to {
+        background: var(--button-final-gradient);
+    }
 }
 
 .one {
