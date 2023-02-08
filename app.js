@@ -18,7 +18,7 @@ const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*")
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(arithmeticButtonDock.querySelectorAll("*"));
 const unaryButtons = assertElementCollection(document.querySelectorAll(".area-unary > *"));
-const memoryButtons = assertElementCollection(document.querySelectorAll(".area-memory > *"));
+const memoryButtons = assertElementCollection(memoryButtonDock.querySelectorAll("*"));
 
 function initDecimalPointState () {
     let decimalPointUsed = false;
