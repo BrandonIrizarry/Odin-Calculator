@@ -296,7 +296,8 @@ document.addEventListener("keydown", event => {
         // display) to apply here
         numberPad.dispatchEvent(clickEvent);
 
-        insertFromNumberpad(key);
+        const buttonPressed = numberPad.querySelector(`[data-index="${key}"]`);
+        buttonPressed.dispatchEvent(clickEvent);
     }
 
     // Handle backspace
