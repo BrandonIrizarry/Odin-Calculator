@@ -8,6 +8,11 @@
     --button-width: 100px;
     --button-height: auto;
     --cubic-bezier-1: cubic-bezier(0,1.06,.4,1.08);
+
+    --font-size-normal: 2rem;
+    --font-size-reduced: 1.3rem;
+    --font-size-button: 2rem;
+    --font-size-logo: 1.5rem;
 }
 
 /* GLOBAL SETTINGS AND RESETS */
@@ -58,7 +63,7 @@ body {
     justify-content: end;
     align-items: end;
     padding: 20px;
-    font-size: 2rem;
+    font-size: var(--font-size-normal);
     border-radius: var(--default-border-radius);
 }
 
@@ -88,7 +93,7 @@ body {
 
 .area-logo {
     grid-area: logo;
-    font-size: 1.5rem;
+    font-size: var(--font-size-logo);
 }
 
 .area-numberpad {
@@ -155,7 +160,7 @@ body {
     color: var(--button-fg-color);
     border-radius: var(--default-border-radius);
     background: var(--button-initial-gradient);
-    font-size: 2rem;
+    font-size: var(--font-size-button);
 
     --button-bg-color-light: #fafbff;
     --button-fg-color: #010b02;
@@ -234,7 +239,7 @@ body {
     }
 
     .area-display {
-        font-size: 1.3rem;
+        font-size: var(--font-size-reduced);
     }
 
     body {
@@ -296,7 +301,7 @@ body {
 @media only screen and (min-width: 800px) {
     /* Restore large font size for larger displays */
     .area-display {
-        font-size: 2rem;
+        font-size: var(--font-size-normal);
     }
 }
 
