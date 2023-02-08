@@ -205,7 +205,8 @@ equalsButton.addEventListener("click", () => {
     }
 });
 
-function insertFromNumberpad (newChar = "0") {
+function insertFromNumberpad () {
+    const newChar = this.textContent;
     display.classList.add("blink");
 
     insertIntoDisplay(newChar, decimalPointState.getDecimalPointUsed());
@@ -216,9 +217,7 @@ function insertFromNumberpad (newChar = "0") {
 }
 
 // All numberpad buttons
-numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", () => {
-    insertFromNumberpad(numberPadButton.textContent);
-}));
+numberPadButtons.forEach(numberPadButton => numberPadButton.addEventListener("click", insertFromNumberpad));
 
 display.addEventListener("animationend", () => {
     display.classList.remove("blink");
