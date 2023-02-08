@@ -174,7 +174,11 @@ function doEquals () {
 
         // Write to the display
         display.textContent = result;
+
+        return true;
     }
+
+    return false;
 }
 
 // Arithmetic buttons
@@ -188,7 +192,13 @@ arithmeticButtons.forEach(arithmeticButton =>
     }));
 
 // Equals button
-equalsButton.addEventListener("click", doEquals);
+equalsButton.addEventListener("click", () => {
+    const computationHappened = doEquals();
+
+    if (computationHappened) {
+        display.classList.add("blink");
+    }
+});
 
 function insertFromNumberpad (newChar = "0") {
     insertIntoDisplay(newChar, decimalPointState.getDecimalPointUsed());
