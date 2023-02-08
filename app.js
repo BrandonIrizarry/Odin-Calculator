@@ -43,7 +43,12 @@ const decimalPointState = initDecimalPointState();
 
 function backspaceDisplay () {
     const newText = display.textContent.slice(0, -1);
-    display.textContent = newText;
+
+    if (newText === "") {
+        display.textContent = "0";
+    } else {
+        display.textContent = newText;
+    }
 }
 
 function clearDisplay () {
