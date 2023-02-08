@@ -227,6 +227,8 @@ backspaceButton.addEventListener("click", () => {
     }
 
     backspaceDisplay();
+
+    display.classList.add("blink");
 });
 
 // Clear-entry button
