@@ -283,7 +283,7 @@ memoryButtons.forEach(memoryButton => memoryButton.addEventListener("click", () 
     const memoryLabel = memoryButton.textContent;
     const output = memoryCell[memoryLabel](input);
 
-    if (output) {
+    if ((typeof output) === "number") {
         display.textContent = output;
     }
 }));
