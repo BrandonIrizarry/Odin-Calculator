@@ -290,6 +290,9 @@ memoryButtons.forEach(memoryButton => memoryButton.addEventListener("click", () 
 
 // Keyboard interaction
 document.addEventListener("keydown", event => {
+    // Don't disable Ctrl+Shift+I shortcut for DevTools
+    if (event.ctrlKey && event.shiftKey && event.key === "I") return;
+
     event.preventDefault();
 
     const key = event.key;
