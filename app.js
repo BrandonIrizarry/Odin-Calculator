@@ -11,13 +11,14 @@ const clearEntryButton = document.querySelector("#js-clear-entry");
 const allClearButton = document.querySelector("#js-all-clear");
 const arithmeticButtonDock = document.querySelector(".area-arithmetic");
 const memoryButtonDock = document.querySelector(".area-memory");
+const unaryButtonDock = document.querySelector(".area-unary");
 
 // NodeLists
 const allButtons = assertElementCollection(document.querySelectorAll(".button"));
 const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
 const arithmeticButtons = assertElementCollection(arithmeticButtonDock.querySelectorAll("*"));
-const unaryButtons = assertElementCollection(document.querySelectorAll(".area-unary > *"));
+const unaryButtons = assertElementCollection(unaryButtonDock.querySelectorAll("*"));
 const memoryButtons = assertElementCollection(memoryButtonDock.querySelectorAll("*"));
 
 function initDecimalPointState () {
@@ -335,10 +336,17 @@ document.addEventListener("keydown", event => {
         equalsButton.dispatchEvent(clickEvent);
         doEquals();
         break;
-    case "p": case "m": case "z": case "r":
+    case "p": case "m": case "z": case "r": {
         const buttonPressed = memoryButtonDock.querySelector(`[data-index="${key}"]`);
         buttonPressed.classList.add("js-button-active");
         buttonPressed.dispatchEvent(clickEvent);
+    }
+        break;
+    case "v": case "~": case "%": {
+        const buttonPressed = unaryButtonDock.querySelector(`[data-index="${key}"]`);
+        buttonPressed.classList.add("js-button-active");
+        buttonPressed.dispatchEvent(clickEvent);
+    }
         break;
     }
 });
