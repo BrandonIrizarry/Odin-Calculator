@@ -15,11 +15,11 @@ const unaryButtonDock = document.querySelector(".area-unary");
 
 // NodeLists
 const allButtons = assertElementCollection(document.querySelectorAll(".button"));
-const numberPadButtons = assertElementCollection(numberPad.querySelectorAll("*"));
+const numberPadButtons = assertElementCollection(numberPad.querySelectorAll(".button"));
 const digitButtons = assertElementCollection(numberPad.querySelectorAll(".js-number"));
-const arithmeticButtons = assertElementCollection(arithmeticButtonDock.querySelectorAll("*"));
-const unaryButtons = assertElementCollection(unaryButtonDock.querySelectorAll("*"));
-const memoryButtons = assertElementCollection(memoryButtonDock.querySelectorAll("*"));
+const arithmeticButtons = assertElementCollection(arithmeticButtonDock.querySelectorAll(".button"));
+const unaryButtons = assertElementCollection(unaryButtonDock.querySelectorAll(".button"));
+const memoryButtons = assertElementCollection(memoryButtonDock.querySelectorAll(".button"));
 
 function initDecimalPointState () {
     let decimalPointUsed = false;
