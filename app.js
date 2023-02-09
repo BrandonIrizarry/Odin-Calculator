@@ -293,6 +293,9 @@ document.addEventListener("keydown", event => {
     // Don't disable Ctrl+Shift+I shortcut for DevTools
     if (event.ctrlKey && event.shiftKey && event.key === "I") return;
 
+    // Don't disable browser reloading
+    if (event.ctrlKey && event.shiftKey && event.key === "R") return;
+
     event.preventDefault();
 
     const key = event.key;
