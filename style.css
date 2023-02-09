@@ -277,7 +277,11 @@ body {
     }
 
     .area-control-panel {
-        height: 75%;
+        height: 100%;
+    }
+
+    .area-unary {
+        height: 100%;
     }
 
     .area-control-panel > [class*="button"] {
