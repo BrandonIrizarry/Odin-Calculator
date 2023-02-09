@@ -114,7 +114,7 @@ body {
 
 .area-control-panel {
     grid-area: control-panel;
-    height: 75%;
+    height: 50%;
 }
 
 .area-equals {
@@ -244,11 +244,10 @@ body {
 	    "numberpad numberpad numberpad memory"
 	    "numberpad numberpad numberpad memory"
 	    "numberpad numberpad numberpad memory"
-	    "unary unary unary control-panel"
-	    ". . . control-panel";
+	    "unary unary unary control-panel";
 
 	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 1fr min-content repeat(6, 1fr);
+	grid-template-rows: 1fr min-content repeat(4, 1fr) .62fr;
     }
 
     .flex-dock > [class*="button"] {
@@ -257,7 +256,7 @@ body {
 
     /* Keep memory and control-panel as vertical button-docks, but change
     the rest to horizontal */
-    .flex-dock:not(.area-memory, .area-control-panel) {
+    .flex-dock:not(.area-memory, .area-equals) {
 	flex-direction: row;
     }
 
@@ -265,21 +264,16 @@ body {
 	align-items: end;
     }
 
-    .area-unary {
-	align-items: start;
-	height: 62%;
-    }
-
     .area-arithmetic > * {
 	height: 75%;
     }
 
-    .area-unary > * {
-	height: 100%;
+    .area-control-panel {
+        height: 75%;
     }
 
-    .area-control-panel {
-	height: 100%;
+    .area-control-panel > [class*="button"] {
+        font-size: var(--font-size-reduced);
     }
 
     .area-logo {
@@ -293,6 +287,11 @@ body {
     .area-display {
         font-size: var(--font-size-normal);
     }
+
+    .area-control-panel > [class*="button"] {
+        font-size: var(--font-size-normal);
+    }
+
 }
 
 /* Desktop */
