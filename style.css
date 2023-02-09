@@ -36,15 +36,14 @@ ul {
     list-style-type: none;
 }
 
+/* MAIN CONFIGURATION */
+
 /* https://stackoverflow.com/questions/11078509/how-to-increase-the-clickable-area-of-a-a-tag-button */
-a {
-  position: relative;
-  z-index: 1;
+#github {
   padding: 1rem;
   margin: -0.5rem -1rem -1rem -1rem;
 }
 
-/* MAIN CONFIGURATION */
 body {
     background-color: var(--default-bg-color);
     margin: 0;
