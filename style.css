@@ -166,6 +166,7 @@ body {
     border-radius: var(--default-border-radius);
     background: var(--button-initial-gradient);
     font-size: var(--font-size-button);
+    position: relative;
 
     --button-bg-color-light: #fafbff;
     --button-fg-color: #010b02;
@@ -191,6 +192,48 @@ body {
 
     to {
         background: var(--button-final-gradient);
+    }
+}
+
+.button .tooltip {
+    opacity: 0;
+    width: 50px;
+    background-color: yellow;
+    border: 1px solid black;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    right: 10px;
+}
+
+/* https://stackoverflow.com/questions/8566090/how-can-i-delay-a-hover-effect-in-css */
+.button:hover .tooltip {
+    animation: 2s linear blinkTooltip;
+}
+
+@keyframes blinkTooltip {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    95% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
     }
 }
 
