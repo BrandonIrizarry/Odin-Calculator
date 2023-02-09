@@ -189,10 +189,15 @@ function doEquals () {
     return false;
 }
 
+function getButtonText (buttonElement) {
+    return buttonElement.firstChild.textContent;
+}
+
 // Arithmetic buttons
 arithmeticButtons.forEach(arithmeticButton =>
     arithmeticButton.addEventListener("click", () => {
-        const computationHappened = doArithmetic(arithmeticButton.textContent);
+        const currentOperator = getButtonText(arithmeticButton);
+        const computationHappened = doArithmetic(currentOperator);
 
         if (computationHappened) {
             display.classList.add("blink");
@@ -209,7 +214,7 @@ equalsButton.addEventListener("click", () => {
 });
 
 function insertFromNumberpad () {
-    const newChar = this.textContent;
+    const newChar = getButtonText(this);
     display.classList.add("blink");
 
     insertIntoDisplay(newChar, decimalPointState.getDecimalPointUsed());
@@ -263,7 +268,7 @@ allClearButton.addEventListener("click", () => {
 // Unary buttons
 unaryButtons.forEach(unaryButton => unaryButton.addEventListener("click", () => {
     const input = assertNotNaN(parseFloat(display.textContent));
-    const unaryOperator = unaryButton.textContent;
+    const unaryOperator = getButtonText(unaryButton);
 
     display.textContent = calculate(input, null, unaryOperator);
     display.classList.add("blink");
@@ -281,7 +286,7 @@ const memoryCell = {
 // Memory buttons
 memoryButtons.forEach(memoryButton => memoryButton.addEventListener("click", () => {
     const input = assertNotNaN(parseFloat(display.textContent));
-    const memoryLabel = memoryButton.textContent;
+    const memoryLabel = getButtonText(memoryButton);
     const output = memoryCell[memoryLabel](input);
 
     if ((typeof output) === "number") {
