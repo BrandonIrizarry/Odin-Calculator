@@ -7,6 +7,7 @@
 
     --button-width: 100px;
     --cubic-bezier-1: cubic-bezier(0,1.06,.4,1.08);
+    --cubic-bezier-exponential: cubic-bezier(1,0,0,1);
 
     --font-size-normal: 2rem;
     --font-size-reduced: 1.3rem;
@@ -212,7 +213,7 @@ body {
 
 /* https://stackoverflow.com/questions/8566090/how-can-i-delay-a-hover-effect-in-css */
 .button:hover .tooltip {
-    animation: 2s linear blinkTooltip;
+    animation: 1s var(--cubic-bezier-exponential) blinkTooltip;
 }
 
 @keyframes blinkTooltip {
@@ -220,11 +221,11 @@ body {
         opacity: 0;
     }
 
-    20% {
+    40% {
         opacity: 0;
     }
 
-    25% {
+    45% {
         opacity: 1;
     }
 
