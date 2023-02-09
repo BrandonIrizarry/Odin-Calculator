@@ -6,7 +6,6 @@
     --default-border-radius: 5px;
 
     --button-width: 100px;
-    --button-height: auto;
     --cubic-bezier-1: cubic-bezier(0,1.06,.4,1.08);
 
     --font-size-normal: 2rem;
@@ -138,7 +137,6 @@ body {
 }
 
 .grid-dock {
-    grid-template-rows: repeat(4, var(--button-height));
     grid-template-areas:
 	"seven eight nine"
 	"four five six"
@@ -234,10 +232,6 @@ body {
 }
 
 @media only screen and (orientation: portrait), (min-width: 992px) {
-    :root {
-	--button-height: auto; /* Make buttons fit better, and also not cause overflow */
-    }
-
     .area-display {
         font-size: var(--font-size-reduced);
     }
@@ -265,10 +259,6 @@ body {
     the rest to horizontal */
     .flex-dock:not(.area-memory, .area-control-panel) {
 	flex-direction: row;
-    }
-
-    .grid-dock {
-	grid-template-rows: repeat(4, minmax(var(--button-height), 1fr)); /* Use minmax */
     }
 
     .area-arithmetic {
