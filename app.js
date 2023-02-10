@@ -131,6 +131,16 @@ function calculate (a, b = 0, operator = "") {
     return result;
 }
 
+function validateCalculatedResult (result = 0) {
+    const resultString = result.toString();
+
+    if (!resultString.includes(".")) {
+        decimalPointState.unflagDecimalPoint();
+    }
+
+    return resultString;
+}
+
 function doArithmetic (currentOperator = "") {
     numberPad.addEventListener("click", () => {
         clearDisplay();
@@ -162,7 +172,7 @@ function doArithmetic (currentOperator = "") {
         opBuffer.operator = currentOperator;
 
         // Write to the display
-        display.textContent = result;
+        display.textContent = validateCalculatedResult(result);
         return true;
     }
 
@@ -185,7 +195,7 @@ function doEquals () {
         opBuffer.operator = null;
 
         // Write to the display
-        display.textContent = result;
+        display.textContent = validateCalculatedResult(result);
 
         return true;
     }
@@ -273,8 +283,9 @@ allClearButton.addEventListener("click", () => {
 unaryButtons.forEach(unaryButton => unaryButton.addEventListener("click", () => {
     const input = assertNotNaN(parseFloat(display.textContent));
     const unaryOperator = getButtonText(unaryButton);
+    const result = calculate(input, null, unaryOperator);
 
-    display.textContent = calculate(input, null, unaryOperator);
+    display.textContent = validateCalculatedResult(result);
     display.classList.add("blink");
 }));
 
