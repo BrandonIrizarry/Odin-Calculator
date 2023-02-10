@@ -259,6 +259,10 @@ backspaceButton.addEventListener("click", () => {
 
     backspaceDisplay();
 
+    if (display.textContent === "-") {
+        backspaceDisplay();
+    }
+
     display.classList.add("blink");
 });
 
