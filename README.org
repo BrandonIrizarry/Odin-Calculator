@@ -1,0 +1,44 @@
+* Calculator
+
+** Introduction
+This is a browser emulation of a simple desktop calculator.
+
+** Features
+
+*** Arithmetic
+The usual '+', '-', '*', and '/' are supported. In addition, square
+roots, signed numbers, and percentage calculations (a simple
+divide-by-100) are also supported.
+
+Note that "chained arithmetic" is implemented, as described in the
+[[https://www.theodinproject.com/lessons/foundations-calculator#assignment][problem statement]] (point #6): for example, typing ~12 + 7 - 5 * 3~
+yields ~42~ in the display, with intermediate values being displayed
+along the way.
+
+*** Memory
++ M+
+  - Add the display value to the memory cell.
++ M-
+  - Subtract the display value from the memory cell.
++ M0
+  - Set the memory cell to zero.
++ MR
+  - Set the display value to the memory cell's contents.
+
+
+*** Other Buttons
++ AC
+  - Clears the display, and clears any buffered operand and operator.
++ CE
+  - Clears the currently displayed figure. Buffered data is still intact.
++ =
+  - If there is a buffered left-operand and operator, perform the
+    operation using the displayed value as the right-operand, and
+    display the result.
++ ⌫
+  - Treating the current display as an editable field, delete
+    individual characters from the right.
+
+*** Tooltips
+Each button has an associated tooltip, available on mouse-hover, that
+documents that button's keyboard keybinding.
