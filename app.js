@@ -64,8 +64,12 @@ function insertIntoDisplay (char = "", decimalPointUsed = false) {
 
     const currentText = display.textContent;
 
-    if (currentText === "0") {
+    if (currentText === "0" && char !== ".") {
         display.textContent = "";
+    }
+
+    if (currentText === "" && char === ".") {
+        char = "0.";
     }
 
     display.textContent += char;
