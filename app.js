@@ -191,7 +191,7 @@ function doEquals () {
         const secondOperand = assertNotNaN(parseFloat(currentDisplayText));
         const result = calculate(opBuffer.firstOperand, secondOperand, opBuffer.operator);
 
-        opBuffer.firstOperand = result;
+        opBuffer.firstOperand = null;
         opBuffer.operator = null;
 
         // Write to the display
